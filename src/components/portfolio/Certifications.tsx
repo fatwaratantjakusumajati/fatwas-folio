@@ -1,0 +1,39 @@
+import { Award } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
+
+const certs = [
+  { name: "RHCSA", org: "Red Hat", color: "from-red-500 to-orange-500" },
+  { name: "IBM AI Practitioner", org: "IBM", color: "from-blue-600 to-blue-400" },
+  { name: "IT Specialist – AI", org: "Certiport", color: "from-purple-600 to-pink-500" },
+  { name: "Enterprise Design Thinking", org: "IBM", color: "from-cyan-500 to-blue-500" },
+  { name: "Python for Data Science", org: "IBM", color: "from-yellow-500 to-amber-500" },
+];
+
+export const Certifications = () => {
+  const { ref, visible } = useReveal<HTMLDivElement>();
+  return (
+    <section id="certifications" className="section-padding">
+      <div className="container">
+        <div className="text-center mb-16">
+          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">Certifications</p>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold">Verified <span className="text-gradient">Credentials</span></h2>
+        </div>
+        <div ref={ref} className="flex flex-wrap justify-center gap-5 max-w-4xl mx-auto">
+          {certs.map((c, i) => (
+            <div key={c.name} className={`group relative ${visible ? "animate-scale-in" : "opacity-0"}`} style={{ animationDelay: `${i * 0.1}s` }}>
+              <div className="flex items-center gap-3 px-5 py-4 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-elegant transition-all hover:-translate-y-1">
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center shadow-card group-hover:scale-110 transition-transform`}>
+                  <Award className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <p className="font-heading font-semibold text-sm">{c.name}</p>
+                  <p className="text-xs text-muted-foreground">{c.org}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
