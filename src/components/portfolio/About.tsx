@@ -24,13 +24,14 @@ export const About = () => {
   const { ref, visible } = useReveal<HTMLDivElement>();
 
   return (
-    <section id="about" className="section-padding relative">
-      <div className="container">
-        <div ref={ref} className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="about" className="section-padding relative overflow-hidden">
+      <div className="absolute -top-40 -right-40 w-[30rem] h-[30rem] bg-gradient-glow opacity-50 pointer-events-none animate-blob" />
+      <div className="container relative">
+        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
           <div className={visible ? "animate-fade-in-left" : "opacity-0"}>
-            <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">About Me</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-              Bridging <span className="text-gradient">AI</span> and <span className="text-gradient">Infrastructure</span>
+            <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— About Me —</p>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1]">
+              Bridging <span className="text-gradient-animated">AI</span> and <span className="text-gradient-animated">Infrastructure</span>
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
