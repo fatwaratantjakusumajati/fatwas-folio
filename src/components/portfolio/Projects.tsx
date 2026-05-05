@@ -14,13 +14,14 @@ const projects = [
 
 export const Projects = () => {
   return (
-    <section id="projects" className="section-padding relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-glow opacity-50 pointer-events-none" />
+    <section id="projects" className="section-padding relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-glow opacity-50 pointer-events-none animate-glow" />
+      <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
       <div className="container relative">
-        <div className="text-center mb-16">
-          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">Projects</p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold">Featured <span className="text-gradient">Work</span></h2>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">A selection of projects spanning AI, infrastructure, IoT, and web development.</p>
+        <div className="text-center mb-20">
+          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Projects —</p>
+          <h2 className="font-heading text-4xl md:text-6xl font-bold mb-5">Featured <span className="text-gradient-animated">Work</span></h2>
+          <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">A selection of projects spanning AI, infrastructure, IoT, and web development.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -33,25 +34,30 @@ export const Projects = () => {
 
 const ProjectCard = ({ icon: Icon, title, desc, tech, category, index }: any) => {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+  };
   return (
     <div
       ref={ref}
-      className={`group relative p-6 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-elegant transition-all hover:-translate-y-2 overflow-hidden ${visible ? "animate-scale-in" : "opacity-0"}`}
+      onMouseMove={handleMove}
+      className={`group card-futuristic p-6 ${visible ? "animate-scale-in" : "opacity-0"}`}
       style={{ animationDelay: `${index * 0.08}s` }}
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity" />
-      <div className="relative">
-        <div className="flex items-start justify-between mb-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform">
+      <div className="relative z-10">
+        <div className="flex items-start justify-between mb-5">
+          <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-glow">
             <Icon className="h-6 w-6 text-primary-foreground" />
           </div>
-          <span className="text-xs px-2 py-1 rounded-md bg-accent/10 text-accent border border-accent/20">{category}</span>
+          <span className="text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-md bg-accent/10 text-accent border border-accent/20">{category}</span>
         </div>
         <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-accent transition-colors">{title}</h3>
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{desc}</p>
+        <p className="text-sm text-muted-foreground mb-5 line-clamp-3 leading-relaxed">{desc}</p>
         <div className="flex flex-wrap gap-1.5">
           {tech.map((t: string) => (
-            <span key={t} className="text-xs px-2 py-0.5 rounded bg-secondary text-secondary-foreground">{t}</span>
+            <span key={t} className="text-xs px-2 py-0.5 rounded bg-secondary/80 text-secondary-foreground border border-border/50">{t}</span>
           ))}
         </div>
       </div>

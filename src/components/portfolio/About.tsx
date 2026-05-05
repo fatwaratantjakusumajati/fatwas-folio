@@ -24,13 +24,14 @@ export const About = () => {
   const { ref, visible } = useReveal<HTMLDivElement>();
 
   return (
-    <section id="about" className="section-padding relative">
-      <div className="container">
-        <div ref={ref} className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="about" className="section-padding relative overflow-hidden">
+      <div className="absolute -top-40 -right-40 w-[30rem] h-[30rem] bg-gradient-glow opacity-50 pointer-events-none animate-blob" />
+      <div className="container relative">
+        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
           <div className={visible ? "animate-fade-in-left" : "opacity-0"}>
-            <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">About Me</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
-              Bridging <span className="text-gradient">AI</span> and <span className="text-gradient">Infrastructure</span>
+            <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— About Me —</p>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1]">
+              Bridging <span className="text-gradient-animated">AI</span> and <span className="text-gradient-animated">Infrastructure</span>
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
@@ -62,12 +63,12 @@ export const About = () => {
               { icon: Code2, title: "Fullstack Dev", desc: "Web applications with PHP, JS, React" },
               { icon: GraduationCap, title: "Continuous Learning", desc: "5 industry certifications & growing" },
             ].map((item, i) => (
-              <div key={item.title} className="group p-6 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-elegant transition-all hover:-translate-y-1" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div key={item.title} className="group card-futuristic p-6" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-glow">
                   <item.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <h3 className="font-heading font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
             ))}
 

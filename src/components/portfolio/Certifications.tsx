@@ -12,17 +12,18 @@ const certs = [
 export const Certifications = () => {
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
-    <section id="certifications" className="section-padding">
-      <div className="container">
-        <div className="text-center mb-16">
-          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">Certifications</p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold">Verified <span className="text-gradient">Credentials</span></h2>
+    <section id="certifications" className="section-padding relative overflow-hidden">
+      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+      <div className="container relative">
+        <div className="text-center mb-20">
+          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Certifications —</p>
+          <h2 className="font-heading text-4xl md:text-6xl font-bold">Verified <span className="text-gradient-animated">Credentials</span></h2>
         </div>
         <div ref={ref} className="flex flex-wrap justify-center gap-5 max-w-4xl mx-auto">
           {certs.map((c, i) => (
             <div key={c.name} className={`group relative ${visible ? "animate-scale-in" : "opacity-0"}`} style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="flex items-center gap-3 px-5 py-4 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-elegant transition-all hover:-translate-y-1">
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center shadow-card group-hover:scale-110 transition-transform`}>
+              <div className="card-futuristic flex items-center gap-3 px-5 py-4">
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center shadow-card group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500`}>
                   <Award className="h-6 w-6 text-white" />
                 </div>
                 <div>

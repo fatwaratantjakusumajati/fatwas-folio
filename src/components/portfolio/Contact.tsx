@@ -45,31 +45,31 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding relative">
-      <div className="absolute inset-0 bg-gradient-glow opacity-40 pointer-events-none" />
+    <section id="contact" className="section-padding relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-glow opacity-40 pointer-events-none animate-glow" />
       <div className="container relative">
-        <div className="text-center mb-16">
-          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">Contact</p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold">Let's <span className="text-gradient">Connect</span></h2>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">Open to opportunities in AI, IT Infrastructure, and Software Engineering.</p>
+        <div className="text-center mb-20">
+          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Contact —</p>
+          <h2 className="font-heading text-4xl md:text-6xl font-bold">Let's <span className="text-gradient-animated">Connect</span></h2>
+          <p className="text-muted-foreground mt-5 max-w-xl mx-auto leading-relaxed">Open to opportunities in AI, IT Infrastructure, and Software Engineering.</p>
         </div>
 
         <div ref={ref} className="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
           <div className={`space-y-4 ${visible ? "animate-fade-in-left" : "opacity-0"}`}>
             {contactItems.map((c) => (
-              <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-card transition-all group">
-                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <a key={c.label} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="card-futuristic flex items-center gap-4 p-5 group">
+                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-glow">
                   <c.icon className="h-5 w-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">{c.label}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{c.label}</p>
                   <p className="font-medium">{c.value}</p>
                 </div>
               </a>
             ))}
           </div>
 
-          <form onSubmit={handleSubmit} className={`p-8 rounded-2xl bg-card border border-border shadow-elegant space-y-4 ${visible ? "animate-fade-in-right" : "opacity-0"}`}>
+          <form onSubmit={handleSubmit} className={`card-futuristic p-8 space-y-5 ${visible ? "animate-fade-in-right" : "opacity-0"}`}>
             <div>
               <Label htmlFor="name">Name</Label>
               <Input id="name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} maxLength={100} className="mt-1.5" />
