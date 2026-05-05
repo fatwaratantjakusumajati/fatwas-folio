@@ -63,12 +63,12 @@ export const About = () => {
               { icon: Code2, title: "Fullstack Dev", desc: "Web applications with PHP, JS, React" },
               { icon: GraduationCap, title: "Continuous Learning", desc: "5 industry certifications & growing" },
             ].map((item, i) => (
-              <div key={item.title} className="group p-6 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-elegant transition-all hover:-translate-y-1" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div key={item.title} className="group card-futuristic p-6" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-glow">
                   <item.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <h3 className="font-heading font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
             ))}
 

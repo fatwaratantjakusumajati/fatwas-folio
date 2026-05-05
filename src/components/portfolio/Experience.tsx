@@ -42,11 +42,12 @@ const experiences = [
 
 export const Experience = () => {
   return (
-    <section id="experience" className="section-padding bg-secondary/30 relative">
-      <div className="container">
-        <div className="text-center mb-16">
-          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">Experience</p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold">Professional <span className="text-gradient">Journey</span></h2>
+    <section id="experience" className="section-padding bg-secondary/30 relative overflow-hidden">
+      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+      <div className="container relative">
+        <div className="text-center mb-20">
+          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Experience —</p>
+          <h2 className="font-heading text-4xl md:text-6xl font-bold">Professional <span className="text-gradient-animated">Journey</span></h2>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
@@ -69,10 +70,10 @@ const TimelineItem = ({ exp, index }: { exp: typeof experiences[0]; index: numbe
   return (
     <div ref={ref} className={`relative flex md:items-center ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
       {/* Dot */}
-      <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-accent ring-4 ring-background shadow-glow md:-translate-x-1/2 z-10" />
+      <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-accent ring-4 ring-background shadow-glow md:-translate-x-1/2 z-10 after:content-[''] after:absolute after:inset-0 after:rounded-full after:bg-accent after:animate-pulse-ring" />
 
       <div className={`pl-12 md:pl-0 md:w-1/2 ${isLeft ? "md:pr-12 md:text-right" : "md:pl-12"} ${visible ? (isLeft ? "animate-fade-in-left" : "animate-fade-in-right") : "opacity-0"}`}>
-        <div className="p-6 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-elegant transition-all">
+        <div className="card-futuristic p-7">
           <div className={`flex flex-wrap gap-3 text-xs text-muted-foreground mb-2 ${isLeft ? "md:justify-end" : ""}`}>
             <span className="flex items-center gap-1"><Calendar className="h-3 w-3" />{exp.period}</span>
             <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />{exp.location}</span>
