@@ -77,7 +77,7 @@ const TimelineItem = ({ exp, index }: { exp: typeof experiences[0]; index: numbe
             <span className="flex items-center gap-1"><Calendar className="h-3 w-3" />{exp.period}</span>
             <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />{exp.location}</span>
           </div>
-          <h3 className="font-heading font-bold text-lg flex items-center gap-2 mb-1 ${isLeft ? 'md:justify-end' : ''}">
+          <h3 className={`font-heading font-bold text-lg flex items-center gap-2 mb-1 ${isLeft ? "md:justify-end" : ""}`}>
             <Briefcase className="h-4 w-4 text-accent shrink-0" />
             {exp.role}
           </h3>
