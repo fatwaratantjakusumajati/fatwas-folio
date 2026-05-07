@@ -70,7 +70,7 @@ const TimelineItem = ({ exp, index }: { exp: typeof experiences[0]; index: numbe
   return (
     <div ref={ref} className={`relative flex md:items-center ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
       {/* Dot */}
-      <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-accent ring-4 ring-background shadow-glow md:-translate-x-1/2 z-10 after:content-[''] after:absolute after:inset-0 after:rounded-full after:bg-accent after:animate-pulse-ring" />
+      <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary ring-4 ring-background md:-translate-x-1/2 z-10" />
 
       <div className={`pl-12 md:pl-0 md:w-1/2 ${isLeft ? "md:pr-12 md:text-right" : "md:pl-12"} ${visible ? (isLeft ? "animate-fade-in-left" : "animate-fade-in-right") : "opacity-0"}`}>
         <div className="card-futuristic p-7">
