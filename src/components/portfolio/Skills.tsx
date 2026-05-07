@@ -12,7 +12,7 @@ export const Skills = () => {
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
     <section id="skills" className="section-padding bg-secondary/30 relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+      
       <div className="container relative">
         <div className="text-center mb-20">
           <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Skills</p>
