@@ -49,8 +49,8 @@ export const Contact = () => {
       <div className="absolute inset-0 bg-gradient-glow opacity-40 pointer-events-none animate-glow" />
       <div className="container relative">
         <div className="text-center mb-20">
-          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Contact —</p>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold">Let's <span className="text-gradient-animated">Connect</span></h2>
+          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Contact</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold">Let's <span className="text-primary">Connect</span></h2>
           <p className="text-muted-foreground mt-5 max-w-xl mx-auto leading-relaxed">Open to opportunities in AI, IT Infrastructure, and Software Engineering.</p>
         </div>
 

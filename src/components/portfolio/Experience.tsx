@@ -46,8 +46,8 @@ export const Experience = () => {
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
       <div className="container relative">
         <div className="text-center mb-20">
-          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Experience —</p>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold">Professional <span className="text-gradient-animated">Journey</span></h2>
+          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Experience</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold">Professional <span className="text-primary">Journey</span></h2>
         </div>
 
         <div className="relative max-w-4xl mx-auto">

@@ -16,8 +16,8 @@ export const Certifications = () => {
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
       <div className="container relative">
         <div className="text-center mb-20">
-          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Certifications —</p>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold">Verified <span className="text-gradient-animated">Credentials</span></h2>
+          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Certifications</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold">Verified <span className="text-primary">Credentials</span></h2>
         </div>
         <div ref={ref} className="flex flex-wrap justify-center gap-5 max-w-4xl mx-auto">
           {certs.map((c, i) => (
