@@ -25,7 +25,7 @@ export const About = () => {
 
   return (
     <section id="about" className="section-padding relative overflow-hidden">
-      <div className="absolute -top-40 -right-40 w-[30rem] h-[30rem] bg-gradient-glow opacity-50 pointer-events-none animate-blob" />
+      
       <div className="container relative">
         <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
           <div className={visible ? "animate-fade-in-left" : "opacity-0"}>
