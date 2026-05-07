@@ -46,7 +46,7 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-glow opacity-40 pointer-events-none animate-glow" />
+      
       <div className="container relative">
         <div className="text-center mb-20">
           <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Contact</p>
