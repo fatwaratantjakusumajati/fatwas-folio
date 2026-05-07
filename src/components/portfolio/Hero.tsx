@@ -1,19 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Sparkles } from "lucide-react";
+import { useParallax } from "@/hooks/useReveal";
 
 export const Hero = () => {
+  const y = useParallax();
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-10 dark:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-hero opacity-10 dark:opacity-100 will-change-transform" style={{ transform: `translate3d(0, ${y * 0.15}px, 0)` }} />
 
       {/* Animated blobs */}
-      <div className="absolute top-1/4 -left-32 w-[28rem] h-[28rem] bg-gradient-glow animate-blob" />
-      <div className="absolute bottom-1/4 -right-32 w-[28rem] h-[28rem] bg-gradient-glow animate-blob" style={{ animationDelay: "3s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[36rem] h-[36rem] bg-gradient-glow opacity-60 animate-glow" />
+      <div className="absolute top-1/4 -left-32 w-[28rem] h-[28rem] bg-gradient-glow animate-blob will-change-transform" style={{ transform: `translate3d(0, ${y * 0.25}px, 0)` }} />
+      <div className="absolute bottom-1/4 -right-32 w-[28rem] h-[28rem] bg-gradient-glow animate-blob will-change-transform" style={{ animationDelay: "3s", transform: `translate3d(0, ${y * -0.2}px, 0)` }} />
+      <div className="absolute top-1/2 left-1/2 w-[36rem] h-[36rem] bg-gradient-glow opacity-60 animate-glow will-change-transform" style={{ transform: `translate3d(-50%, calc(-50% + ${y * 0.1}px), 0)` }} />
 
       {/* Grid pattern */}
-      <div className="absolute inset-0 grid-bg" />
+      <div className="absolute inset-0 grid-bg will-change-transform" style={{ transform: `translate3d(0, ${y * 0.3}px, 0)` }} />
 
       {/* Scan line */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
