@@ -16,12 +16,10 @@ const projects = [
 export const Projects = () => {
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-glow opacity-50 pointer-events-none animate-glow" />
-      <ParallaxGrid speed={0.15} className="opacity-40" />
       <div className="container relative">
-        <div className="text-center mb-20">
-          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Projects —</p>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold mb-5">Featured <span className="text-gradient-animated">Work</span></h2>
+        <div className="text-center mb-16">
+          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-3">Projects</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">Featured Work</h2>
           <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">A selection of projects spanning AI, infrastructure, IoT, and web development.</p>
         </div>
 
