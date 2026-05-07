@@ -1,5 +1,6 @@
 import { Brain, Shield, MessageSquare, Leaf, Cpu, Activity, Globe, Layout } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
+import { ParallaxGrid } from "./ParallaxGrid";
 
 const projects = [
   { icon: Brain, title: "Helmet Detection (YOLOv8)", desc: "Real-time workplace safety detection achieving 94% mAP50 for industrial PPE compliance.", tech: ["YOLOv8", "Python", "OpenCV", "PyTorch"], category: "AI" },
