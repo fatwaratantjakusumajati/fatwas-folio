@@ -17,7 +17,7 @@ export const Projects = () => {
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-glow opacity-50 pointer-events-none animate-glow" />
-      <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+      <ParallaxGrid speed={0.15} className="opacity-40" />
       <div className="container relative">
         <div className="text-center mb-20">
           <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Projects —</p>
