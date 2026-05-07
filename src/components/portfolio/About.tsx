@@ -25,13 +25,13 @@ export const About = () => {
 
   return (
     <section id="about" className="section-padding relative overflow-hidden">
-      <div className="absolute -top-40 -right-40 w-[30rem] h-[30rem] bg-gradient-glow opacity-50 pointer-events-none animate-blob" />
+      
       <div className="container relative">
         <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
           <div className={visible ? "animate-fade-in-left" : "opacity-0"}>
-            <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— About Me —</p>
+            <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">About Me</p>
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1]">
-              Bridging <span className="text-gradient-animated">AI</span> and <span className="text-gradient-animated">Infrastructure</span>
+              Bridging <span className="text-primary">AI</span> and <span className="text-primary">Infrastructure</span>
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>

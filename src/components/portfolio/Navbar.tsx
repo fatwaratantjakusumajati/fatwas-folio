@@ -26,7 +26,7 @@ export const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass shadow-card border-b border-border/40" : "bg-transparent"}`}>
       <div className="container flex h-20 items-center justify-between">
-        <a href="#home" className="font-heading font-bold text-xl text-gradient-animated tracking-tight">FRK<span className="text-accent">.</span></a>
+        <a href="#home" className="font-heading font-bold text-xl text-primary tracking-tight">FRK<span className="text-accent">.</span></a>
 
         <div className="hidden md:flex items-center gap-8">
           {links.map(l => (

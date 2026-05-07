@@ -12,11 +12,11 @@ export const Skills = () => {
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
     <section id="skills" className="section-padding bg-secondary/30 relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+      
       <div className="container relative">
         <div className="text-center mb-20">
-          <p className="text-accent font-semibold text-xs uppercase tracking-[0.3em] mb-4">— Skills —</p>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold">Tech <span className="text-gradient-animated">Stack</span></h2>
+          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Skills</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold">Tech <span className="text-primary">Stack</span></h2>
         </div>
         <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {groups.map((g, i) => (

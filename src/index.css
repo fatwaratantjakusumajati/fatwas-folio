@@ -89,10 +89,6 @@
   html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground font-body antialiased;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, hsl(var(--accent) / 0.10), transparent 60%),
-      radial-gradient(ellipse 60% 50% at 90% 20%, hsl(var(--primary) / 0.08), transparent 60%);
-    background-attachment: fixed;
   }
   h1, h2, h3, h4, h5, h6 { @apply font-heading tracking-tight; }
   ::selection { background: hsl(var(--accent) / 0.3); color: hsl(var(--foreground)); }
@@ -128,34 +124,9 @@
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 40%, transparent 100%);
   }
-  /* Futuristic gradient border using conic gradient mask */
-  .neon-border {
-    position: relative;
-    isolation: isolate;
-  }
-  .neon-border::before {
-    content: "";
-    position: absolute; inset: 0;
-    padding: 1px;
-    border-radius: inherit;
-    background: conic-gradient(from var(--angle, 0deg), hsl(var(--accent)), hsl(var(--primary-glow)), hsl(var(--accent) / 0.2), hsl(var(--accent)));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-    opacity: 0; transition: opacity .4s ease;
-    pointer-events: none;
-  }
-  .neon-border:hover::before { opacity: 1; animation: spin-slow 6s linear infinite; }
   .card-futuristic {
-    @apply relative rounded-2xl bg-card/80 border border-border/70 backdrop-blur-sm transition-all duration-500 hover:border-accent/60 hover:shadow-elegant hover:-translate-y-1 neon-border overflow-hidden;
+    @apply relative rounded-xl bg-card border border-border transition-all duration-300 hover:border-primary/40 hover:shadow-card hover:-translate-y-0.5 overflow-hidden;
   }
-  .card-futuristic::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), hsl(var(--accent) / 0.08), transparent 40%);
-    opacity: 0; transition: opacity .4s ease;
-    pointer-events: none;
-  }
-  .card-futuristic:hover::after { opacity: 1; }
   .shimmer-text {
     background: linear-gradient(90deg, hsl(var(--muted-foreground)) 0%, hsl(var(--foreground)) 50%, hsl(var(--muted-foreground)) 100%);
     background-size: 200% auto;
