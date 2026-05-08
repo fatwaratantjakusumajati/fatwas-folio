@@ -14,10 +14,12 @@ const projects = [
 ];
 
 export const Projects = () => {
+  const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
+
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
       <div className="container relative">
-        <div className="text-center mb-16">
+        <div ref={headingRef} className={`text-center mb-16 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
           <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-3">Projects</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">Featured Work</h2>
           <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">A selection of projects spanning AI, infrastructure, IoT, and web development.</p>

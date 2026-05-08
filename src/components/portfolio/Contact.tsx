@@ -22,6 +22,7 @@ const contactItems = [
 ];
 
 export const Contact = () => {
+  const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { ref, visible } = useReveal<HTMLDivElement>();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
@@ -48,7 +49,7 @@ export const Contact = () => {
     <section id="contact" className="section-padding relative overflow-hidden">
       
       <div className="container relative">
-        <div className="text-center mb-20">
+        <div ref={headingRef} className={`text-center mb-20 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
           <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Contact</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold">Let's <span className="text-primary">Connect</span></h2>
           <p className="text-muted-foreground mt-5 max-w-xl mx-auto leading-relaxed">Open to opportunities in AI, IT Infrastructure, and Software Engineering.</p>

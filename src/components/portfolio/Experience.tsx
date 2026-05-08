@@ -41,11 +41,13 @@ const experiences = [
 ];
 
 export const Experience = () => {
+  const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
+
   return (
     <section id="experience" className="section-padding bg-secondary/30 relative overflow-hidden">
       
       <div className="container relative">
-        <div className="text-center mb-20">
+        <div ref={headingRef} className={`text-center mb-20 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
           <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Experience</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold">Professional <span className="text-primary">Journey</span></h2>
         </div>
