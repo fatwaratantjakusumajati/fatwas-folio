@@ -9,12 +9,13 @@ const groups = [
 ];
 
 export const Skills = () => {
+  const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
     <section id="skills" className="section-padding bg-secondary/30 relative overflow-hidden">
       
       <div className="container relative">
-        <div className="text-center mb-20">
+        <div ref={headingRef} className={`text-center mb-20 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
           <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Skills</p>
           <h2 className="font-heading text-3xl md:text-5xl font-bold">Tech <span className="text-primary">Stack</span></h2>
         </div>

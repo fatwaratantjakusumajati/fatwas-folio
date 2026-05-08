@@ -17,11 +17,12 @@ const orgs = [
 ];
 
 export const Organization = () => {
+  const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
     <section id="organization" className="section-padding bg-secondary/30">
       <div className="container">
-        <div className="text-center mb-16">
+        <div ref={headingRef} className={`text-center mb-16 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
           <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">Organization</p>
           <h2 className="font-heading text-4xl md:text-5xl font-bold">Leadership & <span className="text-gradient">Coordination</span></h2>
         </div>
