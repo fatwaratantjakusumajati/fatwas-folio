@@ -91,9 +91,9 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.7s cubic-bezier(0.22,1,0.36,1) forwards",
-        "fade-in-left": "fade-in-left 0.7s cubic-bezier(0.22,1,0.36,1) forwards",
-        "fade-in-right": "fade-in-right 0.7s cubic-bezier(0.22,1,0.36,1) forwards",
+        "fade-in": "fade-in 0.9s cubic-bezier(0.25,0.46,0.45,0.94) forwards",
+        "fade-in-left": "fade-in-left 0.9s cubic-bezier(0.25,0.46,0.45,0.94) forwards",
+        "fade-in-right": "fade-in-right 0.9s cubic-bezier(0.25,0.46,0.45,0.94) forwards",
         "scale-in": "scale-in 0.5s cubic-bezier(0.22,1,0.36,1) forwards",
         float: "float 6s ease-in-out infinite",
         glow: "glow 3s ease-in-out infinite",
