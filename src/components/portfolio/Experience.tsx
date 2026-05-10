@@ -2,48 +2,36 @@ import { Briefcase, MapPin, Calendar } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const experiences = [
-  {
-    company: "PT INKA (Persero)",
-    role: "IT R&D Intern",
-    location: "Madiun",
-    period: "2024",
-    points: [
-      "Implemented Security Onion for centralized network monitoring and SOC operations",
-      "Configured port mirroring on managed switches for full traffic logging and threat analysis",
-      "Built a YOLOv8 helmet detection system achieving 94% mAP50 for workplace safety compliance",
-    ],
-    tags: ["Security Onion", "YOLOv8", "Linux", "Networking"],
-  },
-  {
-    company: "PT Persolkelly (Lazada Express)",
-    role: "IT Support",
-    location: "Surabaya",
-    period: "2023",
-    points: [
-      "Managed network infrastructure supporting 200+ daily active users",
-      "Maintained, configured, and troubleshot IT devices across multiple departments",
-      "Ensured high uptime and rapid resolution of hardware/software issues",
-    ],
-    tags: ["Network Admin", "Troubleshooting", "Hardware"],
-  },
-  {
-    company: "PT Terminal Intimoda Utama",
-    role: "Fullstack Developer",
-    location: "Surabaya",
-    period: "2022",
-    points: [
-      "Developed the official company website using CodeIgniter 3 framework",
-      "Delivered 5 functional modules within 3 months on schedule",
-      "Implemented MySQL database design and Bootstrap responsive UI",
-    ],
-    tags: ["CodeIgniter 3", "PHP", "MySQL", "Bootstrap"],
-  },
-];
-
 export const Experience = () => {
   const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { t } = useLanguage();
+
+  const experiences = [
+    {
+      company: "PT INKA (Persero)",
+      role: t("exp.inka.role"),
+      location: "Madiun",
+      period: "2024",
+      points: [t("exp.inka.p1"), t("exp.inka.p2"), t("exp.inka.p3")],
+      tags: ["Security Onion", "YOLOv8", "Linux", "Networking"],
+    },
+    {
+      company: "PT Persolkelly (Lazada Express)",
+      role: t("exp.lazada.role"),
+      location: "Sidoarjo",
+      period: "2023",
+      points: [t("exp.lazada.p1"), t("exp.lazada.p2"), t("exp.lazada.p3")],
+      tags: ["Network Admin", "Troubleshooting", "Hardware"],
+    },
+    {
+      company: "PT Terminal Intimoda Utama",
+      role: t("exp.timu.role"),
+      location: "Surabaya",
+      period: "2022",
+      points: [t("exp.timu.p1"), t("exp.timu.p2"), t("exp.timu.p3")],
+      tags: ["CodeIgniter 3", "PHP", "MySQL", "Bootstrap"],
+    },
+  ];
 
   return (
     <section id="experience" className="section-padding bg-secondary/30 relative overflow-hidden">
@@ -67,7 +55,16 @@ export const Experience = () => {
   );
 };
 
-const TimelineItem = ({ exp, index }: { exp: typeof experiences[0]; index: number }) => {
+type Experience = {
+  company: string;
+  role: string;
+  location: string;
+  period: string;
+  points: string[];
+  tags: string[];
+};
+
+const TimelineItem = ({ exp, index }: { exp: Experience; index: number }) => {
   const { ref, visible } = useReveal<HTMLDivElement>();
   const isLeft = index % 2 === 0;
 
@@ -91,8 +88,8 @@ const TimelineItem = ({ exp, index }: { exp: typeof experiences[0]; index: numbe
             {exp.points.map((p, i) => <li key={i}>• {p}</li>)}
           </ul>
           <div className={`flex flex-wrap gap-2 mt-4 ${isLeft ? "md:justify-end" : ""}`}>
-            {exp.tags.map(t => (
-              <span key={t} className="px-2 py-1 text-xs rounded-md bg-accent/10 text-accent border border-accent/20">{t}</span>
+            {exp.tags.map(tag => (
+              <span key={tag} className="px-2 py-1 text-xs rounded-md bg-accent/10 text-accent border border-accent/20">{tag}</span>
             ))}
           </div>
         </div>

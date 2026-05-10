@@ -2,25 +2,26 @@ import { Users, Megaphone } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const orgs = [
-  {
-    icon: Users,
-    role: "Vice President",
-    org: "BEM FASILKOM UPN \"Veteran\" Jawa Timur",
-    desc: "Led organizational strategy alongside the President; coordinated cross-departmental programs and represented student aspirations at the faculty level.",
-  },
-  {
-    icon: Megaphone,
-    role: "Head of Advocacy",
-    org: "BEM FASILKOM UPN \"Veteran\" Jawa Timur",
-    desc: "Directed the advocacy department to address student concerns, mediate with faculty leadership, and run awareness campaigns on academic policies.",
-  },
-];
-
 export const Organization = () => {
   const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { ref, visible } = useReveal<HTMLDivElement>();
   const { t } = useLanguage();
+
+  const orgs = [
+    {
+      icon: Users,
+      role: t("org.vp.role"),
+      org: "BEM FASILKOM UPN \"Veteran\" Jawa Timur",
+      desc: t("org.vp.desc"),
+    },
+    {
+      icon: Megaphone,
+      role: t("org.adv.role"),
+      org: "BEM FASILKOM UPN \"Veteran\" Jawa Timur",
+      desc: t("org.adv.desc"),
+    },
+  ];
+
   return (
     <section id="organization" className="section-padding bg-secondary/30">
       <div className="container">

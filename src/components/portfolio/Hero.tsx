@@ -44,7 +44,7 @@ export const Hero = () => {
                 <a href="#contact">{t("hero.contactMe")}</a>
               </Button>
               <Button size="lg" variant="ghost" asChild>
-                <a href="/cv-fatwa-ratantja-kusumajati.pdf" download>
+                <a href="/cv-fatwa-new.pdf" download>
                   <Download className="mr-2 h-4 w-4" />
                   {t("hero.downloadCv")}
                 </a>

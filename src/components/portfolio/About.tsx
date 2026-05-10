@@ -7,10 +7,10 @@ const StatItem = ({ value, suffix, label, display, start }: { value: number; suf
   const c = useCounter(value, 1800, start);
   return (
     <div className="text-center">
-      <div className="font-heading text-3xl md:text-4xl font-bold text-gradient">
+      <div className="font-heading text-3xl md:text-4xl font-bold text-white drop-shadow-md">
         {display ? (start ? display : "0") : c}{suffix}
       </div>
-      <div className="text-xs md:text-sm text-muted-foreground mt-1">{label}</div>
+      <div className="text-xs md:text-sm text-white font-medium mt-1">{label}</div>
     </div>
   );
 };

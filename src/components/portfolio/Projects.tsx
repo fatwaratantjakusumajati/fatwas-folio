@@ -10,20 +10,20 @@ type Project = {
   category: string;
 };
 
-const projects: Project[] = [
-  { icon: Brain, title: "Helmet Detection (YOLOv8)", desc: "Real-time workplace safety detection achieving 94% mAP50 for industrial PPE compliance.", tech: ["YOLOv8", "Python", "OpenCV", "PyTorch"], category: "AI" },
-  { icon: Shield, title: "Security Onion SOC", desc: "Implemented centralized network monitoring with port mirroring for full traffic visibility.", tech: ["Security Onion", "Linux", "Suricata", "Networking"], category: "Infrastructure" },
-  { icon: MessageSquare, title: "RAG Chatbot", desc: "Retrieval-Augmented Generation chatbot powered by Google Gemini API for context-aware responses.", tech: ["Gemini API", "Python", "LangChain", "Vector DB"], category: "AI" },
-  { icon: Leaf, title: "Tomato Leaf Disease Classifier", desc: "CNN-based image classifier for early detection of tomato plant diseases to support agriculture.", tech: ["CNN", "TensorFlow", "Keras", "Python"], category: "AI" },
-  { icon: Cpu, title: "IoT Temperature Control", desc: "Smart temperature monitoring and control system using microcontrollers and sensors.", tech: ["IoT", "Arduino", "Sensors", "C++"], category: "IoT" },
-  { icon: Activity, title: "Diabetes Classification", desc: "Predictive model using XGBoost with SMOTETomek to handle class imbalance for medical data.", tech: ["XGBoost", "SMOTETomek", "scikit-learn", "Python"], category: "AI" },
-  { icon: Globe, title: "TIU Company Website", desc: "Full company website with 5 modules built and delivered within 3 months.", tech: ["CodeIgniter 3", "PHP", "MySQL", "Bootstrap"], category: "Web" },
-  { icon: Layout, title: "Alba Nusantara Website", desc: "Modern responsive React-based website with smooth UX and clean design.", tech: ["React", "TypeScript", "Tailwind", "Vite"], category: "Web" },
-];
-
 export const Projects = () => {
   const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { t } = useLanguage();
+
+  const projects: Project[] = [
+    { icon: Brain, title: t("proj.helmet.title"), desc: t("proj.helmet.desc"), tech: ["YOLOv8", "Python", "OpenCV", "PyTorch"], category: "AI" },
+    { icon: Shield, title: t("proj.soc.title"), desc: t("proj.soc.desc"), tech: ["Security Onion", "Linux", "Suricata", "Networking"], category: "Infrastructure" },
+    { icon: MessageSquare, title: t("proj.rag.title"), desc: t("proj.rag.desc"), tech: ["Gemini API", "Python", "LangChain", "Vector DB"], category: "AI" },
+    { icon: Leaf, title: t("proj.tomato.title"), desc: t("proj.tomato.desc"), tech: ["CNN", "TensorFlow", "Keras", "Python"], category: "AI" },
+    { icon: Cpu, title: t("proj.iot.title"), desc: t("proj.iot.desc"), tech: ["IoT", "Arduino", "Sensors", "C++"], category: "IoT" },
+    { icon: Activity, title: t("proj.diabetes.title"), desc: t("proj.diabetes.desc"), tech: ["XGBoost", "SMOTETomek", "scikit-learn", "Python"], category: "AI" },
+    { icon: Globe, title: t("proj.timu.title"), desc: t("proj.timu.desc"), tech: ["CodeIgniter 3", "PHP", "MySQL", "Bootstrap"], category: "Web" },
+    { icon: Layout, title: t("proj.alba.title"), desc: t("proj.alba.desc"), tech: ["React", "TypeScript", "Tailwind", "Vite"], category: "Web" },
+  ];
 
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
@@ -66,8 +66,8 @@ const ProjectCard = ({ icon: Icon, title, desc, tech, category, index }: Project
         <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-accent transition-colors">{title}</h3>
         <p className="text-sm text-muted-foreground mb-5 line-clamp-3 leading-relaxed">{desc}</p>
         <div className="flex flex-wrap gap-1.5">
-          {tech.map((t: string) => (
-            <span key={t} className="text-xs px-2 py-0.5 rounded bg-secondary/80 text-secondary-foreground border border-border/50">{t}</span>
+          {tech.map((tag: string) => (
+            <span key={tag} className="text-xs px-2 py-0.5 rounded bg-secondary/80 text-secondary-foreground border border-border/50">{tag}</span>
           ))}
         </div>
       </div>
