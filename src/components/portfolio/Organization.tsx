@@ -1,5 +1,6 @@
 import { Users, Megaphone } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const orgs = [
   {
@@ -19,12 +20,13 @@ const orgs = [
 export const Organization = () => {
   const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
   return (
     <section id="organization" className="section-padding bg-secondary/30">
       <div className="container">
         <div ref={headingRef} className={`text-center mb-16 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
-          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">Organization</p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold">Leadership & <span className="text-gradient">Coordination</span></h2>
+          <p className="text-accent font-semibold text-sm uppercase tracking-wider mb-3">{t("org.kicker")}</p>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold">{t("org.title")} <span className="text-gradient">{t("org.title2")}</span></h2>
         </div>
         <div ref={ref} className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {orgs.map((o, i) => (
