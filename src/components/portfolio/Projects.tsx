@@ -1,8 +1,15 @@
-import { Brain, Shield, MessageSquare, Leaf, Cpu, Activity, Globe, Layout } from "lucide-react";
+import { Brain, Shield, MessageSquare, Leaf, Cpu, Activity, Globe, Layout, type LucideIcon } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 
+type Project = {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  tech: string[];
+  category: string;
+};
 
-const projects = [
+const projects: Project[] = [
   { icon: Brain, title: "Helmet Detection (YOLOv8)", desc: "Real-time workplace safety detection achieving 94% mAP50 for industrial PPE compliance.", tech: ["YOLOv8", "Python", "OpenCV", "PyTorch"], category: "AI" },
   { icon: Shield, title: "Security Onion SOC", desc: "Implemented centralized network monitoring with port mirroring for full traffic visibility.", tech: ["Security Onion", "Linux", "Suricata", "Networking"], category: "Infrastructure" },
   { icon: MessageSquare, title: "RAG Chatbot", desc: "Retrieval-Augmented Generation chatbot powered by Google Gemini API for context-aware responses.", tech: ["Gemini API", "Python", "LangChain", "Vector DB"], category: "AI" },
@@ -33,7 +40,7 @@ export const Projects = () => {
   );
 };
 
-const ProjectCard = ({ icon: Icon, title, desc, tech, category, index }: any) => {
+const ProjectCard = ({ icon: Icon, title, desc, tech, category, index }: Project & { index: number }) => {
   const { ref, visible } = useReveal<HTMLDivElement>();
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -44,8 +51,8 @@ const ProjectCard = ({ icon: Icon, title, desc, tech, category, index }: any) =>
     <div
       ref={ref}
       onMouseMove={handleMove}
-      className={`group card-futuristic p-6 ${visible ? "animate-scale-in" : "opacity-0"}`}
-      style={{ animationDelay: `${index * 0.08}s` }}
+      className={`group card-futuristic p-6 transition-[opacity,transform,filter] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[opacity,transform,filter] ${visible ? "opacity-100 translate-y-0 scale-100 blur-0" : "opacity-0 translate-y-4 scale-[0.99] blur-[2px]"}`}
+      style={{ transitionDelay: visible ? `${Math.min(index * 70, 420)}ms` : "0ms" }}
     >
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-5">
