@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "./ThemeProvider";
-
-const links = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#contact", label: "Contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Navbar = () => {
   const { theme, toggle } = useTheme();
+  const { lang, toggle: toggleLang, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { href: "#about", label: t("nav.about") },
+    { href: "#experience", label: t("nav.experience") },
+    { href: "#projects", label: t("nav.projects") },
+    { href: "#skills", label: t("nav.skills") },
+    { href: "#certifications", label: t("nav.certifications") },
+    { href: "#contact", label: t("nav.contact") },
+  ];
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -38,6 +40,16 @@ export const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={toggleLang}
+            aria-label="Toggle language"
+            className="gap-1.5 px-2.5"
+          >
+            <Languages className="h-4 w-4" />
+            <span className="text-xs font-semibold uppercase">{lang === "en" ? "ID" : "EN"}</span>
+          </Button>
           <Button variant="ghost" size="icon" onClick={toggle} aria-label="Toggle theme">
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
