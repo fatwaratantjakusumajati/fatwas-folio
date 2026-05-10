@@ -22,7 +22,7 @@ const dict: Dict = {
   },
   "hero.viewProjects": { en: "View Projects", id: "Lihat Proyek" },
   "hero.contactMe": { en: "Contact Me", id: "Hubungi Saya" },
-  "hero.downloadCv": { en: "Download CV", id: "Unduh CV" },
+  "hero.downloadCv": { en: "Curriculum Vitae", id: "Curriculum Vitae" },
 
   // About
   "about.kicker": { en: "About Me", id: "Tentang Saya" },
