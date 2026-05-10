@@ -11,7 +11,7 @@ export const Contact = () => {
     { icon: Mail, label: t("contact.email"), value: "fatwaratantja@gmail.com", href: "mailto:fatwaratantja@gmail.com" },
     { icon: Phone, label: t("contact.whatsapp"), value: "+62 812-3456-9805", href: "https://wa.me/6281234569805" },
     { icon: Linkedin, label: t("contact.linkedin"), value: "fatwaratantja", href: "https://www.linkedin.com/in/fatwaratantja/" },
-    { icon: Award, label: t("contact.credly"), value: t("contact.viewBadges"), href: "https://credly.com" },
+    { icon: Award, label: t("contact.credly"), value: t("contact.viewBadges"), href: "https://www.credly.com/users/fatwa-ratantja/badges#credly" },
   ];
 
   return (
