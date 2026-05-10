@@ -21,7 +21,11 @@ export const Skills = () => {
         </div>
         <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {groups.map((g, i) => (
-            <div key={g.title} className={`card-futuristic p-6 ${visible ? "animate-fade-in" : "opacity-0"}`} style={{ animationDelay: `${i * 0.1}s` }}>
+            <div
+              key={g.title}
+              className={`card-futuristic p-6 transition-[opacity,transform,filter] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[opacity,transform,filter] ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-4 blur-[2px]"}`}
+              style={{ transitionDelay: visible ? `${i * 80}ms` : "0ms" }}
+            >
               <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-5 shadow-glow">
                 <g.icon className="h-6 w-6 text-primary-foreground" />
               </div>

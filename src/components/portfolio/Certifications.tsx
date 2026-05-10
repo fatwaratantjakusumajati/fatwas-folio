@@ -22,7 +22,11 @@ export const Certifications = () => {
         </div>
         <div ref={ref} className="flex flex-wrap justify-center gap-5 max-w-4xl mx-auto">
           {certs.map((c, i) => (
-            <div key={c.name} className={`group relative ${visible ? "animate-scale-in" : "opacity-0"}`} style={{ animationDelay: `${i * 0.1}s` }}>
+            <div
+              key={c.name}
+              className={`group relative transition-[opacity,transform,filter] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[opacity,transform,filter] ${visible ? "opacity-100 translate-y-0 scale-100 blur-0" : "opacity-0 translate-y-4 scale-[0.99] blur-[2px]"}`}
+              style={{ transitionDelay: visible ? `${i * 80}ms` : "0ms" }}
+            >
               <div className="card-futuristic flex items-center gap-3 px-5 py-4">
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center shadow-card group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500`}>
                   <Award className="h-6 w-6 text-white" />

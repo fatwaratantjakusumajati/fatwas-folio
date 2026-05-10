@@ -28,7 +28,11 @@ export const Organization = () => {
         </div>
         <div ref={ref} className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {orgs.map((o, i) => (
-            <div key={o.role} className={`p-6 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-elegant transition-all ${visible ? "animate-fade-in" : "opacity-0"}`} style={{ animationDelay: `${i * 0.15}s` }}>
+            <div
+              key={o.role}
+              className={`p-6 rounded-2xl bg-card border border-border hover:border-accent/50 hover:shadow-elegant transition-[opacity,transform,filter,border-color,box-shadow] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[opacity,transform,filter] ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-4 blur-[2px]"}`}
+              style={{ transitionDelay: visible ? `${i * 90}ms` : "0ms" }}
+            >
               <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-4">
                 <o.icon className="h-6 w-6 text-primary-foreground" />
               </div>

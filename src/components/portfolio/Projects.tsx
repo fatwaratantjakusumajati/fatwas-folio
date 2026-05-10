@@ -44,8 +44,8 @@ const ProjectCard = ({ icon: Icon, title, desc, tech, category, index }: any) =>
     <div
       ref={ref}
       onMouseMove={handleMove}
-      className={`group card-futuristic p-6 ${visible ? "animate-scale-in" : "opacity-0"}`}
-      style={{ animationDelay: `${index * 0.08}s` }}
+      className={`group card-futuristic p-6 transition-[opacity,transform,filter] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[opacity,transform,filter] ${visible ? "opacity-100 translate-y-0 scale-100 blur-0" : "opacity-0 translate-y-4 scale-[0.99] blur-[2px]"}`}
+      style={{ transitionDelay: visible ? `${Math.min(index * 70, 420)}ms` : "0ms" }}
     >
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-5">
