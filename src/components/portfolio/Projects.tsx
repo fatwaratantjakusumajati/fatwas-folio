@@ -1,8 +1,15 @@
-import { Brain, Shield, MessageSquare, Leaf, Cpu, Activity, Globe, Layout } from "lucide-react";
+import { Brain, Shield, MessageSquare, Leaf, Cpu, Activity, Globe, Layout, type LucideIcon } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 
+type Project = {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  tech: string[];
+  category: string;
+};
 
-const projects = [
+const projects: Project[] = [
   { icon: Brain, title: "Helmet Detection (YOLOv8)", desc: "Real-time workplace safety detection achieving 94% mAP50 for industrial PPE compliance.", tech: ["YOLOv8", "Python", "OpenCV", "PyTorch"], category: "AI" },
   { icon: Shield, title: "Security Onion SOC", desc: "Implemented centralized network monitoring with port mirroring for full traffic visibility.", tech: ["Security Onion", "Linux", "Suricata", "Networking"], category: "Infrastructure" },
   { icon: MessageSquare, title: "RAG Chatbot", desc: "Retrieval-Augmented Generation chatbot powered by Google Gemini API for context-aware responses.", tech: ["Gemini API", "Python", "LangChain", "Vector DB"], category: "AI" },
@@ -33,7 +40,7 @@ export const Projects = () => {
   );
 };
 
-const ProjectCard = ({ icon: Icon, title, desc, tech, category, index }: any) => {
+const ProjectCard = ({ icon: Icon, title, desc, tech, category, index }: Project & { index: number }) => {
   const { ref, visible } = useReveal<HTMLDivElement>();
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
