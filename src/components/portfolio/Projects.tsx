@@ -1,5 +1,6 @@
 import { Brain, Shield, MessageSquare, Leaf, Cpu, Activity, Globe, Layout, type LucideIcon } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Project = {
   icon: LucideIcon;
@@ -22,14 +23,15 @@ const projects: Project[] = [
 
 export const Projects = () => {
   const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
 
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
       <div className="container relative">
         <div ref={headingRef} className={`text-center mb-16 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
-          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-3">Projects</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">Featured Work</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">A selection of projects spanning AI, infrastructure, IoT, and web development.</p>
+          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-3">{t("proj.kicker")}</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">{t("proj.title")}</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">{t("proj.subtitle")}</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

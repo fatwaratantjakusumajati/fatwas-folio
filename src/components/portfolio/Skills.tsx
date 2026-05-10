@@ -1,23 +1,26 @@
 import { Code, Brain, Server, Globe } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
-
-const groups = [
-  { icon: Code, title: "Programming", items: ["Python", "PHP", "JavaScript"] },
-  { icon: Brain, title: "AI / Data", items: ["Machine Learning", "Computer Vision", "XGBoost", "CNN", "YOLO"] },
-  { icon: Server, title: "Infrastructure", items: ["Linux", "System Administration", "Network Monitoring", "Security Onion"] },
-  { icon: Globe, title: "Web Development", items: ["CodeIgniter 3", "MySQL", "Bootstrap", "HTML", "CSS"] },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Skills = () => {
   const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
+
+  const groups = [
+    { icon: Code, title: t("skills.programming"), items: ["Python", "PHP", "JavaScript"] },
+    { icon: Brain, title: t("skills.ai"), items: ["Machine Learning", "Computer Vision", "XGBoost", "CNN", "YOLO"] },
+    { icon: Server, title: t("skills.infra"), items: ["Linux", "System Administration", "Network Monitoring", "Security Onion"] },
+    { icon: Globe, title: t("skills.web"), items: ["CodeIgniter 3", "MySQL", "Bootstrap", "HTML", "CSS"] },
+  ];
+
   return (
     <section id="skills" className="section-padding bg-secondary/30 relative overflow-hidden">
       
       <div className="container relative">
         <div ref={headingRef} className={`text-center mb-20 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
-          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Skills</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold">Tech <span className="text-primary">Stack</span></h2>
+          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">{t("skills.kicker")}</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold">{t("skills.title")} <span className="text-primary">{t("skills.title2")}</span></h2>
         </div>
         <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {groups.map((g, i) => (

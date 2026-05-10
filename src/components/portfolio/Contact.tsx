@@ -1,24 +1,26 @@
 import { Mail, Phone, Linkedin, Award } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
-
-const contactItems = [
-  { icon: Mail, label: "Email", value: "fatwaratantja@gmail.com", href: "mailto:fatwaratantja@gmail.com" },
-  { icon: Phone, label: "WhatsApp", value: "+62 812-3456-9805", href: "https://wa.me/6281234569805" },
-  { icon: Linkedin, label: "LinkedIn", value: "fatwaratantja", href: "https://www.linkedin.com/in/fatwaratantja/" },
-  { icon: Award, label: "Credly", value: "View Badges", href: "https://credly.com" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Contact = () => {
   const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const { t } = useLanguage();
+
+  const contactItems = [
+    { icon: Mail, label: t("contact.email"), value: "fatwaratantja@gmail.com", href: "mailto:fatwaratantja@gmail.com" },
+    { icon: Phone, label: t("contact.whatsapp"), value: "+62 812-3456-9805", href: "https://wa.me/6281234569805" },
+    { icon: Linkedin, label: t("contact.linkedin"), value: "fatwaratantja", href: "https://www.linkedin.com/in/fatwaratantja/" },
+    { icon: Award, label: t("contact.credly"), value: t("contact.viewBadges"), href: "https://credly.com" },
+  ];
 
   return (
     <section id="contact" className="section-padding relative overflow-hidden">
       <div className="container relative">
         <div ref={headingRef} className={`text-center mb-20 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
-          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">Contact</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold">Let&apos;s <span className="text-primary">Connect</span></h2>
-          <p className="text-muted-foreground mt-5 max-w-xl mx-auto leading-relaxed">Open to opportunities in AI, IT Infrastructure, and Software Engineering.</p>
+          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">{t("contact.kicker")}</p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold">{t("contact.title")} <span className="text-primary">{t("contact.title2")}</span></h2>
+          <p className="text-muted-foreground mt-5 max-w-xl mx-auto leading-relaxed">{t("contact.subtitle")}</p>
         </div>
 
         <div ref={ref} className={`grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-4xl mx-auto ${visible ? "animate-fade-in" : "opacity-0"}`}>
