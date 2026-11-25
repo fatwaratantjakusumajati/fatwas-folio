@@ -1,41 +1,53 @@
-import { Code, Brain, Server, Globe } from "lucide-react";
-import { useReveal } from "@/hooks/useReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const skillPalette = ["bg-[#FACC15]", "bg-[#6CB4FA]", "bg-[#F78EB6]", "bg-[#2ED47A]"];
+
 export const Skills = () => {
-  const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
-  const { ref, visible } = useReveal<HTMLDivElement>();
   const { t } = useLanguage();
 
   const groups = [
-    { icon: Code, title: t("skills.programming"), items: ["Python", "PHP", "JavaScript"] },
-    { icon: Brain, title: t("skills.ai"), items: ["Machine Learning", "Computer Vision", "XGBoost", "CNN", "YOLO"] },
-    { icon: Server, title: t("skills.infra"), items: ["Linux", "System Administration", "Network Monitoring", "Security Onion"] },
-    { icon: Globe, title: t("skills.web"), items: ["CodeIgniter 3", "MySQL", "Bootstrap", "HTML", "CSS"] },
+    {
+      title: t("skills.cv"),
+      items: ["YOLO", "OpenVINO", "OpenCV", "ArUco", "OCR", "CNN", "XGBoost", "PyTorch"],
+    },
+    {
+      title: t("skills.llm"),
+      items: ["n8n", "WhatsApp", "Gemini API", "RAG", "Python"],
+    },
+    {
+      title: t("skills.web"),
+      items: ["React TanStack", "Node.js", "Express.js", "TypeScript", "PHP", "MySQL", "PostgreSQL"],
+    },
+    {
+      title: t("skills.infra"),
+      items: ["RHCSA", "Security Onion", "Suricata", "GLPI"],
+    },
   ];
 
   return (
-    <section id="skills" className="section-padding bg-secondary/30 relative overflow-hidden">
-      
-      <div className="container relative">
-        <div ref={headingRef} className={`text-center mb-20 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
-          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">{t("skills.kicker")}</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold">{t("skills.title")} <span className="text-primary">{t("skills.title2")}</span></h2>
+    <section id="skills" className="py-12 sm:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+        <div className="space-y-3">
+          <span className="neo-pill px-4 py-1 text-xs bg-[#6CB4FA] neo-shadow-sm">
+            {t("skills.kicker")}
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground">
+            {t("skills.title")}
+          </h2>
         </div>
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {groups.map((g, i) => (
-            <div
-              key={g.title}
-              className={`card-futuristic p-6 transition-[opacity,transform,filter] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[opacity,transform,filter] ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-4 blur-[2px]"}`}
-              style={{ transitionDelay: visible ? `${i * 80}ms` : "0ms" }}
-            >
-              <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-5 shadow-glow">
-                <g.icon className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <h3 className="font-heading font-semibold mb-4 text-lg">{g.title}</h3>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {groups.map((grp) => (
+            <div key={grp.title} className="neo-card p-6 space-y-4">
+              <h3 className="font-heading text-lg font-extrabold text-foreground">{grp.title}</h3>
               <div className="flex flex-wrap gap-2">
-                {g.items.map(item => (
-                  <span key={item} className="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20 hover:bg-accent hover:text-accent-foreground transition-all duration-300 hover:-translate-y-0.5">{item}</span>
+                {grp.items.map((item, idx) => (
+                  <span
+                    key={item}
+                    className={`neo-pill px-3 py-1 text-xs ${skillPalette[idx % skillPalette.length]}`}
+                  >
+                    {item}
+                  </span>
                 ))}
               </div>
             </div>

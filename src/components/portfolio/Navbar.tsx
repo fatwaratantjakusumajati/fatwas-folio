@@ -1,75 +1,103 @@
-import { useEffect, useState } from "react";
-import { Moon, Sun, Menu, X, Languages } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useTheme } from "./ThemeProvider";
+import { useState } from "react";
+import { Menu, X, Moon, Sun, Languages } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useTheme } from "./ThemeProvider";
 
 export const Navbar = () => {
-  const { theme, toggle } = useTheme();
   const { lang, toggle: toggleLang, t } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
+  const { theme, toggle: toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
 
   const links = [
-    { href: "#about", label: t("nav.about") },
-    { href: "#experience", label: t("nav.experience") },
     { href: "#projects", label: t("nav.projects") },
     { href: "#skills", label: t("nav.skills") },
-    { href: "#certifications", label: t("nav.certifications") },
-    { href: "#contact", label: t("nav.contact") },
+    { href: "#experience", label: t("nav.experience") },
+    { href: "#education", label: t("nav.education") },
   ];
 
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass shadow-card border-b border-border/40" : "bg-transparent"}`}>
-      <div className="container flex h-20 items-center justify-between">
-        <a href="#home" className="font-heading font-bold text-xl text-primary tracking-tight">FRK<span className="text-accent">.</span></a>
+    <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b-[2.5px] border-[var(--ink)]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between gap-6">
+        <a
+          href="#home"
+          className="inline-flex items-center px-4 py-1.5 rounded-xl bg-[#FACC15] text-[#16181D] font-heading font-extrabold text-base sm:text-lg tracking-tight -rotate-2 hover:rotate-0 transition-transform whitespace-nowrap shrink-0 neo-border neo-shadow-sm"
+        >
+          Fatwa R.
+        </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {links.map(l => (
-            <a key={l.href} href={l.href} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group">
+        <nav className="hidden md:flex items-center gap-3">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="px-4 py-1.5 rounded-full text-sm font-heading font-semibold bg-card text-foreground border-2 border-[var(--ink)] hover:bg-[#FEF08A] hover:text-[#16181D] transition-colors whitespace-nowrap shrink-0"
+            >
               {l.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
             </a>
           ))}
-        </div>
+        </nav>
 
-        <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
+        <div className="flex items-center gap-2.5 shrink-0">
+          <button
+            type="button"
             onClick={toggleLang}
             aria-label="Toggle language"
-            className="gap-1.5 px-2.5"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-heading font-bold bg-card text-foreground border-2 border-[var(--ink)] hover:bg-secondary transition-colors whitespace-nowrap shrink-0"
           >
-            <Languages className="h-4 w-4" />
-            <span className="text-xs font-semibold uppercase">{lang === "en" ? "ID" : "EN"}</span>
-          </Button>
-          <Button variant="ghost" size="icon" onClick={toggle} aria-label="Toggle theme">
-            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+            <Languages className="h-3.5 w-3.5" />
+            <span>{lang.toUpperCase()}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-card text-foreground border-2 border-[var(--ink)] hover:bg-secondary transition-colors shrink-0"
+          >
+            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex neo-btn px-4 py-1.5 text-sm bg-[#2ED47A] text-[#16181D]"
+          >
+            {t("nav.contact")}
+          </a>
+
+          <button
+            type="button"
+            className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-card text-foreground border-2 border-[var(--ink)]"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle navigation menu"
+          >
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
         </div>
       </div>
 
       {open && (
-        <div className="md:hidden glass border-t border-border animate-fade-in">
-          <div className="container py-4 flex flex-col gap-3">
-            {links.map(l => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-sm font-medium py-2 text-muted-foreground hover:text-foreground">
+        <div className="md:hidden border-t-2 border-[var(--ink)] bg-background px-4 py-4">
+          <div className="flex flex-col gap-2.5">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="px-4 py-2.5 rounded-xl font-heading font-semibold text-sm bg-card text-foreground border-2 border-[var(--ink)]"
+              >
                 {l.label}
               </a>
             ))}
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="px-4 py-2.5 rounded-xl font-heading font-bold text-sm text-center bg-[#2ED47A] text-[#16181D] border-2 border-[var(--ink)]"
+            >
+              {t("nav.contact")}
+            </a>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };

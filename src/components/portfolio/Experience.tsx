@@ -1,99 +1,95 @@
-import { Briefcase, MapPin, Calendar } from "lucide-react";
-import { useReveal } from "@/hooks/useReveal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Experience = () => {
-  const { ref: headingRef, visible: headingVisible } = useReveal<HTMLDivElement>();
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
 
-  const experiences = [
+  const items = [
     {
-      company: "PT INKA (Persero)",
-      role: t("exp.inka.role"),
-      location: "Madiun",
-      period: "2024",
-      points: [t("exp.inka.p1"), t("exp.inka.p2"), t("exp.inka.p3")],
-      tags: ["Security Onion", "YOLOv8", "Linux", "Networking"],
+      period: "Jun - Dec 2026",
+      badgeBg: "bg-[#2ED47A]",
+      role: "Warehouse Technology Specialist",
+      description:
+        lang === "id"
+          ? "PT Aristides Logistik Indonesia. Membangun sistem computer vision, dashboard pemantauan, dan otomasi untuk gudang 3PL di Surabaya, meliputi deteksi kendaraan, muatan, dan staging, pelacakan barang ArUco, OCR dokumen, serta laporan WhatsApp."
+          : "PT Aristides Logistik Indonesia. Builds computer vision systems, monitoring dashboards, and automation for a 3PL warehouse in Surabaya, including vehicle, cargo, and staging detection, ArUco item tracking, document OCR, and WhatsApp reporting.",
     },
     {
-      company: "PT Persolkelly (Lazada Express)",
-      role: t("exp.lazada.role"),
-      location: "Sidoarjo",
-      period: "2023",
-      points: [t("exp.lazada.p1"), t("exp.lazada.p2"), t("exp.lazada.p3")],
-      tags: ["Network Admin", "Troubleshooting", "Hardware"],
+      period: "Nov 2025 - May 2026",
+      badgeBg: "bg-[#6CB4FA]",
+      role: "R&D Intern, IT Operations",
+      description:
+        lang === "id"
+          ? "PT INKA (Persero). Menginstal dan mengkonfigurasi Security Onion dengan port mirroring untuk pemantauan keamanan jaringan di data center, serta mengembangkan prototipe deteksi helm keselamatan YOLOv8n untuk keselamatan kerja."
+          : "PT INKA (Persero). Installed and configured Security Onion with port mirroring for network security monitoring in the data center, and developed a YOLOv8n safety helmet detection prototype for workplace safety.",
     },
     {
-      company: "PT Terminal Intimoda Utama",
-      role: t("exp.timu.role"),
-      location: "Surabaya",
-      period: "2022",
-      points: [t("exp.timu.p1"), t("exp.timu.p2"), t("exp.timu.p3")],
-      tags: ["CodeIgniter 3", "PHP", "MySQL", "Bootstrap"],
+      period: "Mar - Nov 2025",
+      badgeBg: "bg-[#FACC15]",
+      role: "IT Support",
+      description:
+        lang === "id"
+          ? "Lazada Express (LEX). Melakukan pemantauan jaringan rutin agar infrastruktur tetap stabil dan tersedia, serta menangani pemeliharaan dan troubleshooting perangkat dari identifikasi gangguan hingga penanganan teknis dengan downtime minimal."
+          : "Lazada Express (LEX). Performed regular network monitoring to keep the infrastructure stable and available, and handled maintenance and troubleshooting, from fault identification to technical handling, to keep devices running with minimal downtime.",
+    },
+    {
+      period: "Aug - Dec 2024",
+      badgeBg: "bg-[#F78EB6]",
+      role: "Fullstack Web Developer",
+      description:
+        lang === "id"
+          ? "PT Terminal Intimoda Utama. Merancang dan mengembangkan website resmi perusahaan dengan CodeIgniter 3, PHP, MySQL, dan Bootstrap, dengan antarmuka responsif di berbagai perangkat."
+          : "PT Terminal Intimoda Utama. Designed and developed the company’s official website with CodeIgniter 3, PHP, MySQL, and Bootstrap, with a responsive interface across devices.",
+    },
+    {
+      period: "2022 - 2024",
+      badgeBg: "bg-[#C4B5FD]",
+      role:
+        lang === "id"
+          ? "Wakil Presiden dan Kepala Advokasi"
+          : "Vice President and Head of Advocacy",
+      description:
+        lang === "id"
+          ? "BEM FASILKOM UPN “Veteran” Jawa Timur. Sebagai Wakil Presiden, mengawasi 2 departemen dan membangun kemitraan dengan 10+ institusi eksternal; sebagai Kepala Advokasi, mendampingi dan mewakili 500+ mahasiswa serta merancang program advokasi."
+          : "BEM FASILKOM UPN “Veteran” Jawa Timur. As Vice President, supervised 2 departments and built partnerships with 10+ external institutions; as Head of Advocacy, guided and represented 500+ students and designed advocacy programs.",
     },
   ];
 
   return (
-    <section id="experience" className="section-padding bg-secondary/30 relative overflow-hidden">
-      
-      <div className="container relative">
-        <div ref={headingRef} className={`text-center mb-20 ${headingVisible ? "animate-fade-in" : "opacity-0"}`}>
-          <p className="text-primary font-semibold text-xs uppercase tracking-widest mb-4">{t("exp.kicker")}</p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold">{t("exp.title")} <span className="text-primary">{t("exp.title2")}</span></h2>
+    <section id="experience" className="py-12 sm:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+        <div className="space-y-3">
+          <span className="neo-pill px-4 py-1 text-xs bg-[#2ED47A] neo-shadow-sm">
+            {t("exp.kicker")}
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground">
+            {t("exp.title")}
+          </h2>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-primary to-transparent md:-translate-x-1/2" />
+        <div className="space-y-4">
+          {items.map((item) => (
+            <div
+              key={`${item.period}-${item.role}`}
+              className="neo-card p-5 sm:p-6 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-7"
+            >
+              <div className="sm:w-44 shrink-0 pt-0.5">
+                <span className={`neo-pill px-3.5 py-1 text-xs font-mono ${item.badgeBg}`}>
+                  {item.period}
+                </span>
+              </div>
 
-          <div className="space-y-12">
-            {experiences.map((exp, i) => <TimelineItem key={exp.company} exp={exp} index={i} />)}
-          </div>
+              <div className="space-y-1.5">
+                <h3 className="font-heading text-lg sm:text-xl font-extrabold text-foreground">
+                  {item.role}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-};
-
-type Experience = {
-  company: string;
-  role: string;
-  location: string;
-  period: string;
-  points: string[];
-  tags: string[];
-};
-
-const TimelineItem = ({ exp, index }: { exp: Experience; index: number }) => {
-  const { ref, visible } = useReveal<HTMLDivElement>();
-  const isLeft = index % 2 === 0;
-
-  return (
-    <div ref={ref} className={`relative flex md:items-center ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
-      {/* Dot */}
-      <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary ring-4 ring-background md:-translate-x-1/2 z-10" />
-
-      <div className={`pl-12 md:pl-0 md:w-1/2 ${isLeft ? "md:pr-12 md:text-right" : "md:pl-12"} ${visible ? (isLeft ? "animate-fade-in-left" : "animate-fade-in-right") : "opacity-0"}`}>
-        <div className="card-futuristic p-7">
-          <div className={`flex flex-wrap gap-3 text-xs text-muted-foreground mb-2 ${isLeft ? "md:justify-end" : ""}`}>
-            <span className="flex items-center gap-1"><Calendar className="h-3 w-3" />{exp.period}</span>
-            <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />{exp.location}</span>
-          </div>
-          <h3 className={`font-heading font-bold text-lg flex items-center gap-2 mb-1 ${isLeft ? "md:justify-end" : ""}`}>
-            <Briefcase className="h-4 w-4 text-accent shrink-0" />
-            {exp.role}
-          </h3>
-          <p className="text-accent font-medium text-sm mb-3">{exp.company}</p>
-          <ul className={`space-y-2 text-sm text-muted-foreground ${isLeft ? "md:text-right" : ""}`}>
-            {exp.points.map((p, i) => <li key={i}>• {p}</li>)}
-          </ul>
-          <div className={`flex flex-wrap gap-2 mt-4 ${isLeft ? "md:justify-end" : ""}`}>
-            {exp.tags.map(tag => (
-              <span key={tag} className="px-2 py-1 text-xs rounded-md bg-accent/10 text-accent border border-accent/20">{tag}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
   );
 };

@@ -1,0 +1,8 @@
+{
+  "name": "Fatwa R. — AI Systems for Business Portfolio",
+  "description": "Portfolio of Fatwa Ratantja Kusumajati — Informatics graduate building AI systems, computer vision, automation, web dashboards, and network infrastructure for logistics and industry, featuring an interactive RAG chatbot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
