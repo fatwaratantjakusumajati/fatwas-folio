@@ -1,10 +1,3 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
-
-interface VercelLikeResponse extends ServerResponse {
-  status?: (code: number) => VercelLikeResponse;
-  json?: (data: unknown) => void;
-}
-
 export function getHealthInfo() {
   return {
     ok: true,
@@ -13,9 +6,9 @@ export function getHealthInfo() {
   };
 }
 
-export default function handler(_req: IncomingMessage, res: VercelLikeResponse) {
+export default function handler(_req, res) {
   const payload = getHealthInfo();
-  if (typeof res.status === "function") {
+  if (typeof res?.status === "function") {
     const target = res.status(200);
     if (typeof target?.json === "function") {
       target.json(payload);

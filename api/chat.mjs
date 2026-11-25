@@ -1,37 +1,6 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
 import { GoogleGenAI } from "@google/genai";
 
-export interface KnowledgeChunk {
-  id: string;
-  title: string;
-  category: string;
-  keywords: string[];
-  content: string;
-}
-
-export interface ChatHistoryTurn {
-  role: "user" | "assistant";
-  content: string;
-}
-
-export interface ChatSourceRef {
-  id: string;
-  title: string;
-  category: string;
-}
-
-export interface ChatRequestInput {
-  message?: unknown;
-  history?: unknown;
-  lang?: unknown;
-}
-
-export interface ChatResponsePayload {
-  reply: string;
-  sources: ChatSourceRef[];
-}
-
-export const KNOWLEDGE_BASE: KnowledgeChunk[] = [
+export const KNOWLEDGE_BASE = [
   {
     id: "profile-overview",
     title: "Profile & Summary",
@@ -447,15 +416,15 @@ Overview: Full-featured website for Alba Padel Club supporting online court book
   },
 ];
 
-function tokenize(text: string): string[] {
-  return text
+function tokenize(text) {
+  return String(text || "")
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
     .filter((w) => w.length >= 2);
 }
 
-export function retrieveContext(query: string, topK = 5): KnowledgeChunk[] {
+export function retrieveContext(query, topK = 5) {
   const tokens = tokenize(query);
   if (tokens.length === 0) {
     return KNOWLEDGE_BASE.slice(0, topK);
@@ -492,7 +461,7 @@ export function retrieveContext(query: string, topK = 5): KnowledgeChunk[] {
   return top;
 }
 
-function getGeminiClient(): GoogleGenAI | null {
+function getGeminiClient() {
   try {
     const apiKey = process.env.GEMINI_API_KEY?.trim();
     if (!apiKey) {
@@ -511,10 +480,7 @@ function getGeminiClient(): GoogleGenAI | null {
   }
 }
 
-function buildLocalRagFallback(
-  retrieved: KnowledgeChunk[],
-  lang: "en" | "id",
-): string {
+function buildLocalRagFallback(retrieved, lang) {
   const topChunks = retrieved.slice(0, 2);
   const summaryLines = topChunks
     .map((chunk) => `${chunk.title}\n${chunk.content}`)
@@ -527,18 +493,16 @@ function buildLocalRagFallback(
   return `${prefix}${summaryLines}`;
 }
 
-async function withTimeout<T>(promise: Promise<T>, ms = 4500): Promise<T> {
+async function withTimeout(promise, ms = 4500) {
   return Promise.race([
     promise,
-    new Promise<never>((_, reject) =>
+    new Promise((_, reject) =>
       setTimeout(() => reject(new Error("GEMINI_TIMEOUT")), ms),
     ),
   ]);
 }
 
-export async function handlePortfolioChat(
-  input: ChatRequestInput,
-): Promise<{ status: number; body: ChatResponsePayload | { error: string } }> {
+export async function handlePortfolioChat(input) {
   const rawMessage = input?.message;
   if (!rawMessage || typeof rawMessage !== "string" || !rawMessage.trim()) {
     return {
@@ -547,10 +511,10 @@ export async function handlePortfolioChat(
     };
   }
 
-  const lang: "en" | "id" = input?.lang === "id" ? "id" : "en";
+  const lang = input?.lang === "id" ? "id" : "en";
   const trimmedMessage = rawMessage.trim().slice(0, 2000);
   const retrieved = retrieveContext(trimmedMessage, 5);
-  const sources: ChatSourceRef[] = retrieved.map((chunk) => ({
+  const sources = retrieved.map((chunk) => ({
     id: chunk.id,
     title: chunk.title,
     category: chunk.category,
@@ -589,13 +553,12 @@ ${contextBlock}`;
   const safeHistory = Array.isArray(rawHistory)
     ? rawHistory
         .filter(
-          (turn): turn is ChatHistoryTurn =>
+          (turn) =>
             Boolean(turn) &&
             typeof turn === "object" &&
-            ((turn as ChatHistoryTurn).role === "user" ||
-              (turn as ChatHistoryTurn).role === "assistant") &&
-            typeof (turn as ChatHistoryTurn).content === "string" &&
-            (turn as ChatHistoryTurn).content.trim().length > 0,
+            (turn.role === "user" || turn.role === "assistant") &&
+            typeof turn.content === "string" &&
+            turn.content.trim().length > 0,
         )
         .slice(-8)
     : [];
@@ -650,17 +613,8 @@ ${contextBlock}`;
   };
 }
 
-interface VercelLikeRequest extends IncomingMessage {
-  body?: unknown;
-}
-
-interface VercelLikeResponse extends ServerResponse {
-  status?: (code: number) => VercelLikeResponse;
-  json?: (data: unknown) => void;
-}
-
-function sendJson(res: VercelLikeResponse, statusCode: number, data: unknown) {
-  if (typeof res.status === "function") {
+function sendJson(res, statusCode, data) {
+  if (typeof res?.status === "function") {
     const target = res.status(statusCode);
     if (typeof target?.json === "function") {
       target.json(data);
@@ -672,38 +626,35 @@ function sendJson(res: VercelLikeResponse, statusCode: number, data: unknown) {
   res.end(JSON.stringify(data));
 }
 
-async function readBody(req: VercelLikeRequest): Promise<Record<string, unknown>> {
-  if (req.body && typeof req.body === "object") {
-    return req.body as Record<string, unknown>;
+async function readBody(req) {
+  if (req?.body && typeof req.body === "object") {
+    return req.body;
   }
-  if (typeof req.body === "string") {
+  if (typeof req?.body === "string") {
     try {
-      return JSON.parse(req.body) as Record<string, unknown>;
+      return JSON.parse(req.body);
     } catch {
       return {};
     }
   }
-  if (req.readableEnded) {
+  if (req?.readableEnded) {
     return {};
   }
 
   try {
-    const chunks: Buffer[] = [];
+    const chunks = [];
     for await (const chunk of req) {
-      chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : (chunk as Buffer));
+      chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
     }
     const raw = Buffer.concat(chunks).toString("utf8").trim();
     if (!raw) return {};
-    return JSON.parse(raw) as Record<string, unknown>;
+    return JSON.parse(raw);
   } catch {
     return {};
   }
 }
 
-export default async function handler(
-  req: VercelLikeRequest,
-  res: VercelLikeResponse,
-) {
+export default async function handler(req, res) {
   if (req.method === "OPTIONS") {
     res.setHeader("Allow", "POST, OPTIONS");
     res.statusCode = 204;
@@ -720,9 +671,9 @@ export default async function handler(
   try {
     const body = await readBody(req);
     const result = await handlePortfolioChat({
-      message: body.message,
-      history: body.history,
-      lang: body.lang,
+      message: body?.message,
+      history: body?.history,
+      lang: body?.lang,
     });
     sendJson(res, result.status, result.body);
   } catch (err) {

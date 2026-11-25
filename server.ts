@@ -2,8 +2,8 @@ import express from "express";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import { handlePortfolioChat } from "./api/chat";
-import { getHealthInfo } from "./api/health";
+import { handlePortfolioChat } from "./api/chat.mjs";
+import { getHealthInfo } from "./api/health.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
