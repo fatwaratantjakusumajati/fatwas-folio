@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-export const KNOWLEDGE_BASE = [
+const KNOWLEDGE_BASE = [
   {
     id: "profile-overview",
     title: "Profile & Summary",
@@ -424,7 +424,7 @@ function tokenize(text) {
     .filter((w) => w.length >= 2);
 }
 
-export function retrieveContext(query, topK = 5) {
+function retrieveContext(query, topK = 5) {
   const tokens = tokenize(query);
   if (tokens.length === 0) {
     return KNOWLEDGE_BASE.slice(0, topK);
@@ -502,43 +502,64 @@ async function withTimeout(promise, ms = 4500) {
   ]);
 }
 
-export async function handlePortfolioChat(input) {
-  const rawMessage = input?.message;
-  if (!rawMessage || typeof rawMessage !== "string" || !rawMessage.trim()) {
-    return {
-      status: 400,
-      body: { error: "Message is required." },
-    };
-  }
+function jsonResponse(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
 
-  const lang = input?.lang === "id" ? "id" : "en";
-  const trimmedMessage = rawMessage.trim().slice(0, 2000);
-  const retrieved = retrieveContext(trimmedMessage, 5);
-  const sources = retrieved.map((chunk) => ({
-    id: chunk.id,
-    title: chunk.title,
-    category: chunk.category,
-  }));
+export function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      Allow: "POST, OPTIONS",
+    },
+  });
+}
 
-  const ai = getGeminiClient();
-  if (!ai) {
-    return {
-      status: 200,
-      body: {
+export async function POST(request) {
+  try {
+    let body = {};
+    try {
+      body = (await request.json()) ?? {};
+    } catch {
+      body = {};
+    }
+
+    const rawMessage = body?.message;
+    if (!rawMessage || typeof rawMessage !== "string" || !rawMessage.trim()) {
+      return jsonResponse({ error: "Message is required." }, 400);
+    }
+
+    const lang = body?.lang === "id" ? "id" : "en";
+    const trimmedMessage = rawMessage.trim().slice(0, 2000);
+    const retrieved = retrieveContext(trimmedMessage, 5);
+    const sources = retrieved.map((chunk) => ({
+      id: chunk.id,
+      title: chunk.title,
+      category: chunk.category,
+    }));
+
+    const ai = getGeminiClient();
+    if (!ai) {
+      return jsonResponse({
         reply: buildLocalRagFallback(retrieved, lang),
         sources,
-      },
-    };
-  }
+      });
+    }
 
-  const contextBlock = retrieved
-    .map(
-      (chunk, idx) =>
-        `[Source ${idx + 1}: ${chunk.title} (${chunk.category})]\n${chunk.content}`,
-    )
-    .join("\n\n---\n\n");
+    const contextBlock = retrieved
+      .map(
+        (chunk, idx) =>
+          `[Source ${idx + 1}: ${chunk.title} (${chunk.category})]\n${chunk.content}`,
+      )
+      .join("\n\n---\n\n");
 
-  const systemInstruction = `You are Fatwa Ratantja AI Assistant — the personal portfolio assistant for Fatwa Ratantja Kusumajati (inspired by Fatwa's RAG notebook at https://www.kaggle.com/code/fatwaratantjak/fatwa-folio).
+    const systemInstruction = `You are Fatwa Ratantja AI Assistant — the personal portfolio assistant for Fatwa Ratantja Kusumajati (inspired by Fatwa's RAG notebook at https://www.kaggle.com/code/fatwaratantjak/fatwa-folio).
 
 Capabilities & Rules:
 1. PURE PORTFOLIO Q&A: Answer questions strictly about Fatwa Ratantja Kusumajati — his profile, work & internship experience, deployed AI/web/security projects, technical skills, education, organizational leadership, certifications, and contact information using ONLY the RETRIEVED CONTEXT below. Do not invent facts.
@@ -549,135 +570,64 @@ Capabilities & Rules:
 RETRIEVED CONTEXT:
 ${contextBlock}`;
 
-  const rawHistory = input?.history;
-  const safeHistory = Array.isArray(rawHistory)
-    ? rawHistory
-        .filter(
-          (turn) =>
-            Boolean(turn) &&
-            typeof turn === "object" &&
-            (turn.role === "user" || turn.role === "assistant") &&
-            typeof turn.content === "string" &&
-            turn.content.trim().length > 0,
-        )
-        .slice(-8)
-    : [];
+    const rawHistory = body?.history;
+    const safeHistory = Array.isArray(rawHistory)
+      ? rawHistory
+          .filter(
+            (turn) =>
+              Boolean(turn) &&
+              typeof turn === "object" &&
+              (turn.role === "user" || turn.role === "assistant") &&
+              typeof turn.content === "string" &&
+              turn.content.trim().length > 0,
+          )
+          .slice(-8)
+      : [];
 
-  const conversationContents = [
-    ...safeHistory.map((turn) => ({
-      role: turn.role === "assistant" ? "model" : "user",
-      parts: [{ text: turn.content.slice(0, 2000) }],
-    })),
-    {
-      role: "user",
-      parts: [{ text: trimmedMessage }],
-    },
-  ];
+    const conversationContents = [
+      ...safeHistory.map((turn) => ({
+        role: turn.role === "assistant" ? "model" : "user",
+        parts: [{ text: turn.content.slice(0, 2000) }],
+      })),
+      {
+        role: "user",
+        parts: [{ text: trimmedMessage }],
+      },
+    ];
 
-  const modelsToTry = ["gemini-3.1-flash-lite", "gemini-4-hydrogen"];
+    const modelsToTry = ["gemini-3.1-flash-lite", "gemini-4-hydrogen"];
 
-  for (const model of modelsToTry) {
-    try {
-      const response = await withTimeout(
-        ai.models.generateContent({
-          model,
-          contents: conversationContents,
-          config: {
-            systemInstruction,
-          },
-        }),
-        4500,
-      );
+    for (const model of modelsToTry) {
+      try {
+        const response = await withTimeout(
+          ai.models.generateContent({
+            model,
+            contents: conversationContents,
+            config: {
+              systemInstruction,
+            },
+          }),
+          4500,
+        );
 
-      const finalReply = response.text?.trim() || "";
-      if (finalReply) {
-        return {
-          status: 200,
-          body: {
+        const finalReply = response.text?.trim() || "";
+        if (finalReply) {
+          return jsonResponse({
             reply: finalReply,
             sources,
-          },
-        };
+          });
+        }
+      } catch (err) {
+        console.warn(`[/api/chat] Model ${model} fallback:`, err);
       }
-    } catch (err) {
-      console.warn(`[/api/chat] Model ${model} fallback:`, err);
     }
-  }
 
-  return {
-    status: 200,
-    body: {
+    return jsonResponse({
       reply: buildLocalRagFallback(retrieved, lang),
       sources,
-    },
-  };
-}
-
-function sendJson(res, statusCode, data) {
-  if (typeof res?.status === "function") {
-    const target = res.status(statusCode);
-    if (typeof target?.json === "function") {
-      target.json(data);
-      return;
-    }
-  }
-  res.statusCode = statusCode;
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.end(JSON.stringify(data));
-}
-
-async function readBody(req) {
-  if (req?.body && typeof req.body === "object") {
-    return req.body;
-  }
-  if (typeof req?.body === "string") {
-    try {
-      return JSON.parse(req.body);
-    } catch {
-      return {};
-    }
-  }
-  if (req?.readableEnded) {
-    return {};
-  }
-
-  try {
-    const chunks = [];
-    for await (const chunk of req) {
-      chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
-    }
-    const raw = Buffer.concat(chunks).toString("utf8").trim();
-    if (!raw) return {};
-    return JSON.parse(raw);
-  } catch {
-    return {};
-  }
-}
-
-export default async function handler(req, res) {
-  if (req.method === "OPTIONS") {
-    res.setHeader("Allow", "POST, OPTIONS");
-    res.statusCode = 204;
-    res.end();
-    return;
-  }
-
-  if (req.method !== "POST") {
-    res.setHeader("Allow", "POST, OPTIONS");
-    sendJson(res, 405, { error: "Method not allowed. Use POST." });
-    return;
-  }
-
-  try {
-    const body = await readBody(req);
-    const result = await handlePortfolioChat({
-      message: body?.message,
-      history: body?.history,
-      lang: body?.lang,
     });
-    sendJson(res, result.status, result.body);
   } catch (err) {
     console.error("[Vercel /api/chat] error:", err);
-    sendJson(res, 500, { error: "Failed to process chat request." });
+    return jsonResponse({ error: "Failed to process chat request." }, 500);
   }
 }

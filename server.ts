@@ -2,8 +2,8 @@ import express from "express";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import { handlePortfolioChat } from "./api/chat.mjs";
-import { getHealthInfo } from "./api/health.mjs";
+import { GET as handleHealthGet } from "./api/health.js";
+import { POST as handleChatPost } from "./api/chat.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,14 +16,22 @@ async function startServer() {
   const app = express();
   app.use(express.json({ limit: "1mb" }));
 
-  app.get("/api/health", (_req, res) => {
-    res.json(getHealthInfo());
+  app.get("/api/health", async (_req, res) => {
+    const webRes = handleHealthGet();
+    const payload = await webRes.json();
+    res.status(webRes.status).json(payload);
   });
 
   app.post("/api/chat", async (req, res) => {
     try {
-      const result = await handlePortfolioChat(req.body ?? {});
-      return res.status(result.status).json(result.body);
+      const webReq = new Request("http://localhost/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body ?? {}),
+      });
+      const webRes = await handleChatPost(webReq);
+      const payload = await webRes.json();
+      return res.status(webRes.status).json(payload);
     } catch (err: unknown) {
       console.error("[/api/chat] error:", err);
       return res.status(500).json({
