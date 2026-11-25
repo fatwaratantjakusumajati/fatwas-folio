@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { handlePortfolioChat } from "../server/chatService";
+import { handlePortfolioChat } from "../server/chatService.js";
 
 interface VercelLikeRequest extends IncomingMessage {
   body?: unknown;
