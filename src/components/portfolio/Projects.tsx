@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink, MessageSquareText } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useChatbot } from "@/contexts/ChatbotContext";
 import { ProjectPreview, PreviewId } from "./ProjectPreviews";
 import {
   Dialog,
@@ -238,6 +239,7 @@ const moreProjects: MoreProject[] = [
 
 export const Projects = () => {
   const { lang, t } = useLanguage();
+  const { openChat } = useChatbot();
   const [filter, setFilter] = useState<DeployedCategory>("all");
   const [selected, setSelected] = useState<DeployedProject | null>(null);
 
@@ -336,6 +338,21 @@ export const Projects = () => {
                         <ArrowUpRight className="h-3.5 w-3.5" />
                       </button>
 
+                      <button
+                        type="button"
+                        onClick={() =>
+                          openChat(
+                            lang === "id"
+                              ? `Jelaskan lebih detail tentang proyek "${project.title.en}" dan teknologi yang digunakan.`
+                              : `Tell me more about the "${project.title.en}" project and its architecture.`,
+                          )
+                        }
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-heading font-bold bg-card text-foreground border-2 border-[var(--ink)] hover:bg-[#6CB4FA] hover:text-[#16181D] transition-colors"
+                      >
+                        <MessageSquareText className="h-3.5 w-3.5" />
+                        <span>{t("proj.askAbout")}</span>
+                      </button>
+
                       {project.hasChatbotAction && (
                         <a
                           href="https://www.kaggle.com/code/fatwaratantjak/fatwa-folio"
@@ -431,6 +448,22 @@ export const Projects = () => {
                     </span>
                   ))}
                 </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const title = selected.title.en;
+                    setSelected(null);
+                    openChat(
+                      lang === "id"
+                        ? `Ceritakan detail teknis dari proyek "${title}".`
+                        : `Explain the technical implementation of "${title}".`,
+                    );
+                  }}
+                  className="neo-btn px-4 py-2 text-xs bg-[#2ED47A] text-[#16181D] gap-1.5"
+                >
+                  <MessageSquareText className="h-3.5 w-3.5" />
+                  <span>{t("proj.askAbout")}</span>
+                </button>
               </div>
             </>
           )}
