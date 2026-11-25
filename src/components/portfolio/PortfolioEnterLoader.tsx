@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle2, Code2, Cpu, ScanLine } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import fatwaAvatarSmileImg from "@/assets/images/fatwa_avatar_smile_1795569364571.jpg";
 
 interface PortfolioEnterLoaderProps {
   open: boolean;
@@ -84,8 +85,14 @@ export const PortfolioEnterLoader = ({ open, onComplete }: PortfolioEnterLoaderP
       <div className="w-full max-w-md rounded-[24px] bg-[#16181D] text-[#FEF8E7] border-[2.5px] border-[var(--ink)] shadow-[8px_8px_0_var(--ink)] p-6 sm:p-7 space-y-5">
         {/* Top Brand + Status */}
         <div className="flex items-center justify-between gap-2">
-          <span className="inline-flex items-center px-3.5 py-1 rounded-xl bg-[#FACC15] text-[#16181D] font-heading font-extrabold text-sm border-2 border-[#16181D]">
-            Fatwa Ratantja
+          <span className="inline-flex items-center gap-2 pl-1.5 pr-3.5 py-1 rounded-xl bg-[#FACC15] text-[#16181D] font-heading font-extrabold text-sm border-2 border-[#16181D]">
+            <img
+              src={fatwaAvatarSmileImg}
+              alt="Fatwa Ratantja smiling avatar"
+              className="w-6 h-6 rounded-md object-cover border border-[#16181D] animate-neo-avatar-smile"
+              referrerPolicy="no-referrer"
+            />
+            <span>Fatwa Ratantja</span>
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2ED47A] text-[#16181D] font-mono text-[11px] font-extrabold border-2 border-[#16181D]">
             <span className="w-2 h-2 rounded-full bg-[#16181D] animate-pulse" />

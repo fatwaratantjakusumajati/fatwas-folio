@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, Moon, Sun, Languages } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "./ThemeProvider";
+import fatwaAvatarSmileImg from "@/assets/images/fatwa_avatar_smile_1795569364571.jpg";
 
 export const Navbar = () => {
   const { lang, toggle: toggleLang, t } = useLanguage();
@@ -20,9 +21,17 @@ export const Navbar = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between gap-6">
         <a
           href="#home"
-          className="inline-flex items-center px-4 py-1.5 rounded-xl bg-[#FACC15] text-[#16181D] font-heading font-extrabold text-base sm:text-lg tracking-tight -rotate-2 hover:rotate-0 transition-transform whitespace-nowrap shrink-0 neo-border neo-shadow-sm"
+          className="group inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1 rounded-xl bg-[#FACC15] text-[#16181D] font-heading font-extrabold text-base sm:text-lg tracking-tight -rotate-1 hover:rotate-0 transition-transform whitespace-nowrap shrink-0 neo-border neo-shadow-sm"
         >
-          Fatwa Ratantja
+          <span className="w-8 h-8 rounded-lg overflow-hidden border-2 border-[#16181D] bg-[#FACC15] shrink-0 animate-neo-avatar-smile">
+            <img
+              src={fatwaAvatarSmileImg}
+              alt="Fatwa Ratantja smiling logo"
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </span>
+          <span>Fatwa Ratantja</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-3">

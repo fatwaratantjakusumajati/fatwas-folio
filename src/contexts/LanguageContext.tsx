@@ -11,7 +11,6 @@ const dict: Dict = {
   "nav.experience": { en: "Experience", id: "Pengalaman" },
   "nav.education": { en: "Education", id: "Pendidikan" },
   "nav.contact": { en: "Contact", id: "Kontak" },
-  "nav.askAi": { en: "Ask AI", id: "Tanya AI" },
 
   // Hero
   "hero.kicker": { en: "Nice to meet you", id: "Salam kenal" },
@@ -27,7 +26,6 @@ const dict: Dict = {
   },
   "hero.viewProjects": { en: "View projects", id: "Lihat proyek" },
   "hero.contactMe": { en: "Contact me", id: "Hubungi saya" },
-  "hero.askAi": { en: "Chat with AI", id: "Tanya Chatbot AI" },
   "hero.downloadCv": { en: "Download CV", id: "Unduh CV" },
   "hero.reelTitle": { en: "AI Systems Looping Reel", id: "Video Reel Sistem AI (Looping)" },
   "hero.replayIntro": { en: "Watch Intro", id: "Putar Intro" },
@@ -56,13 +54,11 @@ const dict: Dict = {
   "proj.filterCv": { en: "Computer vision", id: "Computer vision" },
   "proj.filterWeb": { en: "Web & automation", id: "Web & otomasi" },
   "proj.filterInfra": { en: "OCR & security", id: "OCR & keamanan" },
-  "proj.askAbout": { en: "Ask AI about this", id: "Tanya AI tentang ini" },
   "proj.viewDetails": { en: "Inspect details", id: "Lihat detail" },
 
   // More Projects Section 02
   "more.kicker": { en: "02 / More projects", id: "02 / Proyek lainnya" },
   "more.title": { en: "Research, LLM, and safety", id: "Riset, LLM, dan keselamatan" },
-  "more.tryChatbot": { en: "Try live RAG chatbot", id: "Coba Chatbot RAG" },
   "more.kaggleLink": { en: "Kaggle Notebook", id: "Notebook Kaggle" },
 
   // Skills Section 03
@@ -106,24 +102,6 @@ const dict: Dict = {
     en: "Replay Intro",
     id: "Putar Ulang Intro",
   },
-
-  // Chatbot
-  "chat.title": { en: "Fatwa Ratantja AI Assistant", id: "Asisten AI Fatwa Ratantja" },
-  "chat.subtitle": {
-    en: "Personal Portfolio Q&A · Ask About Fatwa",
-    id: "Tanya Jawab Portofolio · Tentang Fatwa",
-  },
-  "chat.welcome": {
-    en: "Hi! I'm Fatwa's personal AI assistant. Ask me anything about Fatwa's background, skills, projects, work experience, education, or how to contact him.",
-    id: "Halo! Saya asisten AI pribadi Fatwa. Tanyakan apa saja tentang profil, keahlian, proyek, pengalaman kerja, pendidikan, atau cara menghubungi Fatwa.",
-  },
-  "chat.placeholder": {
-    en: "Ask anything about Fatwa...",
-    id: "Tanyakan apa saja tentang Fatwa...",
-  },
-  "chat.sources": { en: "Retrieved context:", id: "Konteks diambil:" },
-  "chat.thinking": { en: "Searching Fatwa's portfolio...", id: "Mencari di portofolio Fatwa..." },
-  "chat.reset": { en: "New chat", id: "Chat baru" },
 };
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; toggle: () => void; t: (k: string) => string };

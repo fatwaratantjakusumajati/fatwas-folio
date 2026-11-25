@@ -2,7 +2,6 @@ import express from "express";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import { getHealthInfo, handlePortfolioChat } from "./server/chatService";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,24 +12,6 @@ const isProd = process.env.NODE_ENV === "production";
 
 async function startServer() {
   const app = express();
-  app.use(express.json({ limit: "1mb" }));
-
-  app.get("/api/health", (_req, res) => {
-    res.json(getHealthInfo());
-  });
-
-  // Pure portfolio RAG Q&A endpoint focused strictly on Fatwa's profile, projects, skills, and contact
-  app.post("/api/chat", async (req, res) => {
-    try {
-      const result = await handlePortfolioChat(req.body ?? {});
-      return res.status(result.status).json(result.body);
-    } catch (err: unknown) {
-      console.error("[/api/chat] error:", err);
-      return res.status(500).json({
-        error: "Failed to process chat request.",
-      });
-    }
-  });
 
   if (!isProd) {
     const { createServer: createViteServer } = await import("vite");

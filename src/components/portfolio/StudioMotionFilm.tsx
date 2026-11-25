@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import fatwaCodingImg from "@/assets/images/fatwa_coding_illustrated_1795566211105.jpg";
+import fatwaAvatarSmileImg from "@/assets/images/fatwa_avatar_smile_1795569364571.jpg";
 
 const TOTAL_DURATION = 25; // seconds per seamless loop
 
@@ -375,7 +376,13 @@ export const StudioMotionFilm = ({
                 <span className="w-3 h-3 rounded-full bg-[#F78EB6] border border-[#16181D]" />
                 <span className="w-3 h-3 rounded-full bg-[#FACC15] border border-[#16181D]" />
                 <span className="w-3 h-3 rounded-full bg-[#2ED47A] border border-[#16181D]" />
-                <span className="ml-2 font-mono text-[11px] font-semibold text-[#FEF8E7]/80 truncate">
+                <img
+                  src={fatwaAvatarSmileImg}
+                  alt="Fatwa Ratantja smiling logo"
+                  className="ml-2 w-6 h-6 rounded-md object-cover border border-[#16181D] bg-[#FACC15] animate-neo-avatar-smile shrink-0"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="font-mono text-[11px] font-semibold text-[#FEF8E7]/80 truncate">
                   fatwa-ratantja://studio.os
                 </span>
               </div>
@@ -410,13 +417,24 @@ export const StudioMotionFilm = ({
                 transform: `scale(${0.96 + act1Op * 0.04})`,
               }}
             >
-              <div className="space-y-4 max-w-2xl">
+              <div className="space-y-3.5 max-w-2xl">
+                <div className="flex justify-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-[#FACC15] border-[2.5px] border-[#16181D] shadow-[4px_4px_0_#2ED47A] animate-neo-avatar-smile">
+                    <img
+                      src={fatwaAvatarSmileImg}
+                      alt="Fatwa Ratantja smiling avatar"
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                </div>
+
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#FEF8E7]/25 bg-white/5 text-[#FACC15] font-mono text-xs tracking-wider">
                   FATWA RATANTJA KUSUMAJATI · SURABAYA
                 </div>
 
-                <div className="font-heading text-sm sm:text-base font-bold text-[#6CB4FA] tracking-wide">
-                  Selamat datang di portofolioku
+                <div className="font-heading text-base sm:text-lg font-extrabold text-[#6CB4FA] tracking-wide">
+                  Welcome to Fatwa&apos;s Portfolio
                 </div>
 
                 <h2 className="font-heading text-3xl sm:text-5xl lg:text-[52px] font-extrabold text-[#FEF8E7] leading-[1.08] tracking-tight">

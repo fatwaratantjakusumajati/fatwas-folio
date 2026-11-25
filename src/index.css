@@ -280,6 +280,18 @@
   }
 }
 
+@keyframes neo-avatar-smile {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(-3deg) scale(1);
+  }
+  35% {
+    transform: translate3d(0, -3px, 0) rotate(4deg) scale(1.06);
+  }
+  70% {
+    transform: translate3d(0, 1px, 0) rotate(-2deg) scale(1.02);
+  }
+}
+
 .animate-neo-scene-in {
   animation: neo-scene-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -322,6 +334,10 @@
   animation: neo-bar-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.animate-neo-avatar-smile {
+  animation: neo-avatar-smile 2.8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-neo-scene-in,
   .animate-neo-float,
@@ -332,7 +348,8 @@
   .animate-neo-dash-flow,
   .animate-neo-draw-line,
   .animate-neo-radar-ping,
-  .animate-neo-bar-rise {
+  .animate-neo-bar-rise,
+  .animate-neo-avatar-smile {
     animation: none !important;
   }
 }
