@@ -34,7 +34,7 @@ const Index = () => {
     );
     setMeta(
       "keywords",
-      "Fatwa Ratantja Kusumajati, AI Systems, Logistics AI, Computer Vision, YOLOv8, ArUco, OCR, n8n, RAG Chatbot, Gemini API, Security Onion, Surabaya",
+      "Fatwa Ratantja Kusumajati, AI Systems, Logistics AI, Computer Vision, YOLOv8, ArUco, OCR, n8n, Gemini API, Security Onion, Surabaya",
     );
 
     const ld = {

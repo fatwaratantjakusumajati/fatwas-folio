@@ -1,11 +1,9 @@
-import { ArrowRight, Camera, Download, MessageSquareText, Play, Star } from "lucide-react";
+import { ArrowRight, Camera, Download, Play, Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useChatbot } from "@/contexts/ChatbotContext";
 import fatwaFullBodyImg from "@/assets/images/fatwa_fullbody_superstar_1795568401809.jpg";
 
 export const Hero = ({ onReplayIntro }: { onReplayIntro?: () => void }) => {
   const { lang, t } = useLanguage();
-  const { openChat } = useChatbot();
 
   const achievements =
     lang === "id"
@@ -137,15 +135,6 @@ export const Hero = ({ onReplayIntro }: { onReplayIntro?: () => void }) => {
               >
                 {t("hero.contactMe")}
               </a>
-
-              <button
-                type="button"
-                onClick={() => openChat()}
-                className="neo-btn px-5 py-2.5 text-sm bg-[#6CB4FA] text-[#16181D] gap-2"
-              >
-                <MessageSquareText className="h-4 w-4" />
-                <span>{t("hero.askAi")}</span>
-              </button>
 
               <a
                 href="/assets/aistudio/Fatwa_Ratantja_Kusumajati-resume_85bb5067.pdf"
