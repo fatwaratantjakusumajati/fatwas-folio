@@ -31,7 +31,7 @@ export const KNOWLEDGE_BASE: KnowledgeChunk[] = [
       "informatics",
       "informatika",
     ],
-    content: `Name: Fatwa Ratantja Kusumajati (Fatwa R.)
+    content: `Name: Fatwa Ratantja Kusumajati (Fatwa Ratantja)
 Location: Surabaya, Indonesia
 Education: Bachelor of Computer Science (Informatics), UPN "Veteran" Jawa Timur (Aug 2020 - Jul 2025), GPA 3.76/4.00. Specialized in System Administration and Artificial Intelligence (AI).
 Core Focus: Building AI systems, computer vision, automation (n8n, WhatsApp reporting), web dashboards, and network infrastructure for logistics and industry.
@@ -69,7 +69,7 @@ Responsibilities & Impact:
   },
   {
     id: "exp-inka",
-    title: "R&D Intern, IT Operations — PT INKA (Persero)",
+    title: "R&D Intern, IT Operations (MagangHub) — PT INKA (Persero)",
     category: "Experience",
     keywords: [
       "inka",
@@ -77,6 +77,7 @@ Responsibilities & Impact:
       "madiun",
       "intern",
       "magang",
+      "maganghub",
       "r&d",
       "operations",
       "infrastructure",
@@ -89,8 +90,9 @@ Responsibilities & Impact:
       "2025",
       "2026",
     ],
-    content: `Role: R&D Intern, IT Operations (Information Technology Department — IT Operations and Infrastructure) at PT INKA (Persero), Madiun (Nov 2025 - May 2026).
+    content: `Role: R&D Intern, IT Operations (via MagangHub Program — post-graduation, NOT a student internship) at PT INKA (Persero) / Industri Kereta Api, Madiun (Nov 2025 - May 2026).
 Responsibilities & Impact:
+- Joined through the MagangHub program in the Information Technology Department (IT Operations and Infrastructure).
 - Installed and configured Security Onion in the company data center, using port mirroring to consolidate all network traffic logs onto a single centralized server.
 - Enabled real-time threat monitoring and cyber threat detection, reviewing Suricata alerts such as attempted directory traversal and external IP lookups in the Security Onion console.
 - Developed a YOLOv8n safety helmet detection prototype (Ultralytics, PyTorch, OpenCV, Python), achieving 0.94 mAP50 (94%) as an automated workplace safety monitor in an industrial environment.`,
@@ -119,13 +121,17 @@ Responsibilities & Impact:
   },
   {
     id: "exp-timu",
-    title: "Fullstack Web Developer — PT Terminal Intimoda Utama",
+    title: "Fullstack Web Developer (Student Intern) — PT Terminal Intimoda Utama",
     category: "Experience & Project",
     keywords: [
       "terminal",
       "intimoda",
       "timu",
       "fullstack",
+      "student",
+      "mahasiswa",
+      "magang",
+      "intern",
       "web",
       "website",
       "codeigniter",
@@ -134,9 +140,10 @@ Responsibilities & Impact:
       "bootstrap",
       "2024",
     ],
-    content: `Role: Fullstack Web Developer at PT Terminal Intimoda Utama (TIMU), Surabaya (Aug - Dec 2024).
+    content: `Role: Fullstack Web Developer (University Student Internship / Magang Mahasiswa) at PT Terminal Intimoda Utama (TIMU), Surabaya (Aug - Dec 2024).
 Project: Official website of PT Terminal Intimoda Utama (Web / 2024).
 Details:
+- Completed as a student internship while studying Informatics at UPN "Veteran" Jawa Timur.
 - Designed and developed the official company website using CodeIgniter 3, PHP, MySQL, Bootstrap, HTML5, CSS, and JavaScript within a team of 2-3 members.
 - Delivered 5 functional pages and modules within 3 months with a modern, responsive interface across devices.`,
   },
@@ -320,7 +327,7 @@ Description: Company profile website for an Indonesian procurement and trading c
       "map50",
     ],
     content: `More Projects (Research, Safety, Deep Learning & IoT):
-1. Safety helmet detection (Safety / 2026): YOLOv8n prototype (Ultralytics, PyTorch, OpenCV, Python) reaching 0.94 mAP50 (94%), built as an automated workplace safety monitor during the internship at PT INKA (Persero).
+1. Safety helmet detection (Safety / 2026): YOLOv8n prototype (Ultralytics, PyTorch, OpenCV, Python) reaching 0.94 mAP50 (94%), built as an automated workplace safety monitor during the MagangHub program at PT INKA (Persero).
 2. SMOTETomek + XGBoost (Research / 2024): Implementation of SMOTETomek data balancing in diabetes classification using XGBoost (scikit-learn, Python), written as a scientific paper and published in a SINTA 2 indexed national journal.
 3. Tomato leaf disease (Deep learning / 2024): Convolutional Neural Network (CNN) using TensorFlow/Keras and Python classifying tomato leaf images by disease to support early plant disease detection.
 4. Room temperature control (IoT / 2024): IoT system using a PIC microcontroller and temperature sensor to automatically monitor and regulate room temperature.

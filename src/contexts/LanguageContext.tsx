@@ -108,7 +108,7 @@ const dict: Dict = {
   },
 
   // Chatbot
-  "chat.title": { en: "Fatwa R. AI Assistant", id: "Asisten AI Fatwa R." },
+  "chat.title": { en: "Fatwa Ratantja AI Assistant", id: "Asisten AI Fatwa Ratantja" },
   "chat.subtitle": {
     en: "Personal Portfolio Q&A · Ask About Fatwa",
     id: "Tanya Jawab Portofolio · Tentang Fatwa",

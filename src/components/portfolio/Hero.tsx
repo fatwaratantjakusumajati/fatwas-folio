@@ -1,7 +1,7 @@
 import { ArrowRight, Camera, Download, MessageSquareText, Play, Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useChatbot } from "@/contexts/ChatbotContext";
-import fatwaFullBodyImg from "@/assets/images/fatwa_fullbody_cute_1795567624543.jpg";
+import fatwaFullBodyImg from "@/assets/images/fatwa_fullbody_superstar_1795568401809.jpg";
 
 export const Hero = ({ onReplayIntro }: { onReplayIntro?: () => void }) => {
   const { lang, t } = useLanguage();
@@ -34,7 +34,7 @@ export const Hero = ({ onReplayIntro }: { onReplayIntro?: () => void }) => {
       meta: "PT Aristides Logistik Indonesia, Jun - Dec 2026",
     },
     {
-      role: lang === "id" ? "R&D Intern, IT Operations" : "R&D Intern, IT Operations",
+      role: lang === "id" ? "R&D Intern, IT Operations (MagangHub)" : "R&D Intern, IT Operations (MagangHub)",
       meta: "PT INKA (Persero), Nov 2025 - May 2026",
     },
     {
@@ -42,7 +42,10 @@ export const Hero = ({ onReplayIntro }: { onReplayIntro?: () => void }) => {
       meta: "Lazada Express, Mar - Nov 2025",
     },
     {
-      role: "Fullstack Web Developer",
+      role:
+        lang === "id"
+          ? "Fullstack Web Developer (Magang Mahasiswa)"
+          : "Fullstack Web Developer (Student Intern)",
       meta: "PT Terminal Intimoda Utama, Aug - Dec 2024",
     },
   ];

@@ -18,7 +18,7 @@ const Index = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    document.title = "Fatwa R. — AI Systems for Business Portfolio";
+    document.title = "Fatwa Ratantja — AI Systems for Business Portfolio";
     const setMeta = (name: string, content: string) => {
       let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
       if (!el) {
@@ -56,7 +56,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen animate-neo-scene-in">
+    <div className="relative min-h-screen animate-neo-scene-in bg-background">
       <a href="#home" className="sr-only focus:not-sr-only">
         Skip to content
       </a>

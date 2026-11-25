@@ -163,7 +163,7 @@ export const StudioMotionFilm = ({
     };
   }, [paused]);
 
-  // High-DPI Retina ambient blueprint canvas grid & floating light vectors
+  // High-DPI Retina animated computer screen backdrop (CRT scanlines, refresh sweep, drifting terminal stream)
   useEffect(() => {
     const canvas = bgCanvasRef.current;
     if (!canvas) return;
@@ -180,22 +180,21 @@ export const StudioMotionFilm = ({
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
 
-    // Subtle radial spotlight following timeline act
+    // Soft LCD phosphor ambient glow
     const spotX = w * (0.3 + 0.4 * Math.sin((time / TOTAL_DURATION) * Math.PI * 2));
     const spotY = h * 0.48;
-    const grad = ctx.createRadialGradient(spotX, spotY, 20, spotX, spotY, w * 0.65);
-    grad.addColorStop(0, "rgba(108, 180, 250, 0.13)");
-    grad.addColorStop(0.5, "rgba(46, 212, 122, 0.05)");
+    const grad = ctx.createRadialGradient(spotX, spotY, 24, spotX, spotY, w * 0.72);
+    grad.addColorStop(0, "rgba(108, 180, 250, 0.16)");
+    grad.addColorStop(0.5, "rgba(46, 212, 122, 0.07)");
     grad.addColorStop(1, "rgba(18, 20, 26, 0)");
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, w, h);
 
-    // Precision drifting blueprint grid
+    // Subtle pixel matrix grid
     const spacing = 36;
-    const offsetX = (time * 14) % spacing;
-    const offsetY = (time * 8) % spacing;
-
-    ctx.strokeStyle = "rgba(254, 248, 231, 0.045)";
+    const offsetX = (time * 10) % spacing;
+    const offsetY = (time * 6) % spacing;
+    ctx.strokeStyle = "rgba(108, 180, 250, 0.05)";
     ctx.lineWidth = 1;
     for (let x = -spacing + offsetX; x < w + spacing; x += spacing) {
       ctx.beginPath();
@@ -210,13 +209,38 @@ export const StudioMotionFilm = ({
       ctx.stroke();
     }
 
-    // Crisp dot intersections
-    ctx.fillStyle = "rgba(250, 204, 21, 0.18)";
-    for (let x = -spacing + offsetX; x < w + spacing; x += spacing * 2) {
-      for (let y = -spacing + offsetY; y < h + spacing; y += spacing * 2) {
-        ctx.fillRect(x - 1, y - 1, 2, 2);
-      }
+    // Horizontal CRT/LCD phosphor scanlines
+    ctx.fillStyle = "rgba(255, 255, 255, 0.024)";
+    for (let y = 0; y < h; y += 4) {
+      ctx.fillRect(0, y, w, 1);
     }
+
+    // Animated vertical monitor refresh beam sweep
+    const beamY = ((time * 90) % (h + 160)) - 80;
+    const beam = ctx.createLinearGradient(0, beamY - 40, 0, beamY + 40);
+    beam.addColorStop(0, "rgba(46, 212, 122, 0)");
+    beam.addColorStop(0.5, "rgba(46, 212, 122, 0.08)");
+    beam.addColorStop(1, "rgba(46, 212, 122, 0)");
+    ctx.fillStyle = beam;
+    ctx.fillRect(0, beamY - 40, w, 80);
+
+    // Drifting ambient terminal telemetry lines along edges
+    const snippets = [
+      "> sys.boot('fatwa-ratantja.os')",
+      "> vision.yolo({ status: 'LIVE' })",
+      "> aruco.trackZone('OUTBOUND')",
+      "> ocr.parseDocument('INVOICE')",
+      "> soc.suricata('ACTIVE')",
+      "> ui.render('60fps')",
+    ];
+    ctx.font = "600 10px 'JetBrains Mono', monospace";
+    snippets.forEach((line, idx) => {
+      const sy = ((idx * 105 + time * 18) % (h + 40)) - 10;
+      const sx = idx % 2 === 0 ? 18 : Math.max(20, w - 235);
+      const alpha = 0.11 + 0.04 * Math.sin(time * 2 + idx);
+      ctx.fillStyle = `rgba(108, 180, 250, ${alpha})`;
+      ctx.fillText(line, sx, sy);
+    });
   }, [time]);
 
   const activeChapter =
@@ -344,17 +368,21 @@ export const StudioMotionFilm = ({
             className="absolute inset-0 w-full h-full pointer-events-none"
           />
 
-          {/* Top Overlay: Pure Welcome Greeting in Fullscreen, or Broadcast Tag in Inline Mode */}
+          {/* Top Computer Screen Window Chrome in Fullscreen, or Broadcast Tag in Inline Mode */}
           {fullscreen ? (
-            <div className="absolute top-4 sm:top-6 inset-x-4 z-30 flex flex-col items-center text-center pointer-events-none">
-              <div className="inline-flex flex-wrap items-center justify-center gap-2.5 px-4 sm:px-5 py-2 rounded-2xl bg-[#12141A]/80 backdrop-blur-md border-2 border-[#FEF8E7]/20 shadow-[4px_4px_0_rgba(0,0,0,0.55)]">
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-lg bg-[#FACC15] text-[#16181D] font-heading font-extrabold text-xs border-2 border-[#16181D] -rotate-2">
-                  Fatwa R.
-                </span>
-                <span className="font-heading font-extrabold text-sm sm:text-lg text-[#FEF8E7] tracking-tight">
-                  Selamat datang di portofolio ku
+            <div className="relative z-30 flex items-center justify-between gap-3 px-4 py-2.5 bg-[#161922]/90 backdrop-blur-md border-b border-[#FEF8E7]/10">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-[#F78EB6] border border-[#16181D]" />
+                <span className="w-3 h-3 rounded-full bg-[#FACC15] border border-[#16181D]" />
+                <span className="w-3 h-3 rounded-full bg-[#2ED47A] border border-[#16181D]" />
+                <span className="ml-2 font-mono text-[11px] font-semibold text-[#FEF8E7]/80 truncate">
+                  fatwa-ratantja://studio.os
                 </span>
               </div>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#2ED47A]/15 border border-[#2ED47A]/40 font-mono text-[10px] font-bold text-[#2ED47A]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2ED47A] animate-pulse" />
+                ONLINE
+              </span>
             </div>
           ) : (
             <div className="absolute top-3.5 left-4 right-4 z-30 flex items-center justify-between gap-2 pointer-events-none">
@@ -375,7 +403,7 @@ export const StudioMotionFilm = ({
           {act1Op > 0.01 && (
             <div
               className={`absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-10 ${
-                fullscreen ? "pt-20 pb-24" : ""
+                fullscreen ? "pt-14 pb-24" : ""
               }`}
               style={{
                 opacity: act1Op,
@@ -385,6 +413,10 @@ export const StudioMotionFilm = ({
               <div className="space-y-4 max-w-2xl">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#FEF8E7]/25 bg-white/5 text-[#FACC15] font-mono text-xs tracking-wider">
                   FATWA RATANTJA KUSUMAJATI · SURABAYA
+                </div>
+
+                <div className="font-heading text-sm sm:text-base font-bold text-[#6CB4FA] tracking-wide">
+                  Selamat datang di portofolioku
                 </div>
 
                 <h2 className="font-heading text-3xl sm:text-5xl lg:text-[52px] font-extrabold text-[#FEF8E7] leading-[1.08] tracking-tight">
@@ -1191,7 +1223,7 @@ export const StudioMotionFilm = ({
                       <div className="flex items-center justify-between gap-1.5">
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#F78EB6] text-[#16181D] font-heading font-extrabold text-[10px]">
                           <Code2 className="h-3 w-3" />
-                          FULLSTACK DEV · FATWA R.
+                          FULLSTACK DEV · FATWA RATANTJA
                         </span>
                         <span className="font-mono text-[10px] text-[#FEF8E7]/85">
                           React · TS · Node · PHP

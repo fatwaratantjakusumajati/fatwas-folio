@@ -62,10 +62,10 @@ export const PortfolioEnterLoader = ({ open, onComplete }: PortfolioEnterLoaderP
       en: "Preparing Web, Automation & SOC systems...",
       id: "Menyiapkan sistem Web, Otomasi & SOC...",
     },
-    {
+      {
       threshold: 95,
-      en: "Opening Fatwa's Portfolio...",
-      id: "Membuka Portofolio Fatwa...",
+      en: "Opening Fatwa Ratantja's Portfolio...",
+      id: "Membuka Portofolio Fatwa Ratantja...",
     },
   ];
 
@@ -77,19 +77,15 @@ export const PortfolioEnterLoader = ({ open, onComplete }: PortfolioEnterLoaderP
       role="status"
       aria-live="polite"
       aria-label={lang === "id" ? "Memuat portofolio" : "Loading portfolio"}
-      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 bg-background/95 backdrop-blur-sm transition-all duration-200 ${
+      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0B0D12]/90 backdrop-blur-md transition-all duration-200 ${
         exiting ? "opacity-0 scale-[1.02]" : "opacity-100 scale-100 animate-neo-scene-in"
       }`}
-      style={{
-        backgroundImage: "radial-gradient(var(--dot-color) 1.5px, transparent 1.5px)",
-        backgroundSize: "24px 24px",
-      }}
     >
       <div className="w-full max-w-md rounded-[24px] bg-[#16181D] text-[#FEF8E7] border-[2.5px] border-[var(--ink)] shadow-[8px_8px_0_var(--ink)] p-6 sm:p-7 space-y-5">
         {/* Top Brand + Status */}
         <div className="flex items-center justify-between gap-2">
           <span className="inline-flex items-center px-3.5 py-1 rounded-xl bg-[#FACC15] text-[#16181D] font-heading font-extrabold text-sm border-2 border-[#16181D]">
-            Fatwa R.
+            Fatwa Ratantja
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2ED47A] text-[#16181D] font-mono text-[11px] font-extrabold border-2 border-[#16181D]">
             <span className="w-2 h-2 rounded-full bg-[#16181D] animate-pulse" />

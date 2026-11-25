@@ -182,7 +182,7 @@ export const RagChatbot = () => {
         <button
           type="button"
           onClick={toggleChat}
-          aria-label="Open Fatwa R. AI Chatbot"
+          aria-label="Open Fatwa Ratantja AI Chatbot"
           className="fixed bottom-5 right-5 z-50 neo-btn px-5 py-3 text-sm bg-[#FACC15] text-[#16181D] gap-2.5 shadow-[5px_5px_0_var(--ink)]"
         >
           <MessageSquareText className="h-4 w-4" />

@@ -22,7 +22,7 @@ export const Navbar = () => {
           href="#home"
           className="inline-flex items-center px-4 py-1.5 rounded-xl bg-[#FACC15] text-[#16181D] font-heading font-extrabold text-base sm:text-lg tracking-tight -rotate-2 hover:rotate-0 transition-transform whitespace-nowrap shrink-0 neo-border neo-shadow-sm"
         >
-          Fatwa R.
+          Fatwa Ratantja
         </a>
 
         <nav className="hidden md:flex items-center gap-3">

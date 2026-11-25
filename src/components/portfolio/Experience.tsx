@@ -16,11 +16,11 @@ export const Experience = () => {
     {
       period: "Nov 2025 - May 2026",
       badgeBg: "bg-[#6CB4FA]",
-      role: "R&D Intern, IT Operations",
+      role: "R&D Intern, IT Operations (MagangHub)",
       description:
         lang === "id"
-          ? "PT INKA (Persero). Menginstal dan mengkonfigurasi Security Onion dengan port mirroring untuk pemantauan keamanan jaringan di data center, serta mengembangkan prototipe deteksi helm keselamatan YOLOv8n untuk keselamatan kerja."
-          : "PT INKA (Persero). Installed and configured Security Onion with port mirroring for network security monitoring in the data center, and developed a YOLOv8n safety helmet detection prototype for workplace safety.",
+          ? "PT INKA (Persero) · Program MagangHub. Menginstal dan mengkonfigurasi Security Onion dengan port mirroring untuk pemantauan keamanan jaringan di data center, serta mengembangkan prototipe deteksi helm keselamatan YOLOv8n untuk keselamatan kerja."
+          : "PT INKA (Persero) · MagangHub Program. Installed and configured Security Onion with port mirroring for network security monitoring in the data center, and developed a YOLOv8n safety helmet detection prototype for workplace safety.",
     },
     {
       period: "Mar - Nov 2025",
@@ -34,11 +34,14 @@ export const Experience = () => {
     {
       period: "Aug - Dec 2024",
       badgeBg: "bg-[#F78EB6]",
-      role: "Fullstack Web Developer",
+      role:
+        lang === "id"
+          ? "Fullstack Web Developer (Magang Mahasiswa)"
+          : "Fullstack Web Developer (Student Intern)",
       description:
         lang === "id"
-          ? "PT Terminal Intimoda Utama. Merancang dan mengembangkan website resmi perusahaan dengan CodeIgniter 3, PHP, MySQL, dan Bootstrap, dengan antarmuka responsif di berbagai perangkat."
-          : "PT Terminal Intimoda Utama. Designed and developed the company’s official website with CodeIgniter 3, PHP, MySQL, and Bootstrap, with a responsive interface across devices.",
+          ? "PT Terminal Intimoda Utama (Magang Mahasiswa). Merancang dan mengembangkan website resmi perusahaan dengan CodeIgniter 3, PHP, MySQL, dan Bootstrap, dengan antarmuka responsif di berbagai perangkat."
+          : "PT Terminal Intimoda Utama (University Student Internship). Designed and developed the company’s official website with CodeIgniter 3, PHP, MySQL, and Bootstrap, with a responsive interface across devices.",
     },
     {
       period: "2022 - 2024",

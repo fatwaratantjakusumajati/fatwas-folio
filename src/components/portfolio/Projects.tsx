@@ -132,8 +132,8 @@ const deployedProjects: DeployedProject[] = [
       id: "Security Onion di data center",
     },
     description: {
-      en: "Installed and configured Security Onion in the company data center, using port mirroring to consolidate all network traffic logs on a single server. This enabled real-time threat monitoring and detection, including Suricata alerts such as attempted directory traversal and external IP lookups, which were reviewed in the Security Onion console.",
-      id: "Menginstal dan mengkonfigurasi Security Onion di data center perusahaan menggunakan port mirroring untuk mengkonsolidasikan seluruh log lalu lintas jaringan ke satu server. Mendukung deteksi ancaman real-time termasuk alert Suricata seperti percobaan directory traversal dan lookup IP eksternal.",
+      en: "Installed and configured Security Onion in the PT INKA (Persero) data center during the MagangHub program, using port mirroring to consolidate all network traffic logs on a single server. Enabled real-time threat monitoring and Suricata alerts in the Security Onion console.",
+      id: "Menginstal dan mengkonfigurasi Security Onion di data center PT INKA (Persero) saat mengikuti program MagangHub menggunakan port mirroring untuk mengkonsolidasikan seluruh log lalu lintas jaringan ke satu server dan memantau alert Suricata secara real-time.",
     },
     tags: [
       { label: "Security Onion", bg: "bg-[#FACC15]" },
@@ -151,8 +151,8 @@ const deployedProjects: DeployedProject[] = [
       id: "Website resmi PT Terminal Intimoda Utama",
     },
     description: {
-      en: "The official company website, built with CodeIgniter 3, PHP, MySQL, and Bootstrap. It delivers 5 pages and modules with a modern, responsive interface that works across devices and presents the company, its services, and its core values to the public and stakeholders.",
-      id: "Website resmi perusahaan yang dibangun dengan CodeIgniter 3, PHP, MySQL, dan Bootstrap. Menghadirkan 5 halaman dan modul dengan antarmuka responsif untuk memperkenalkan layanan dan nilai perusahaan kepada publik dan pemangku kepentingan.",
+      en: "The official company website built during a university student internship at PT Terminal Intimoda Utama using CodeIgniter 3, PHP, MySQL, and Bootstrap. It delivers 5 pages and modules with a modern, responsive interface across devices.",
+      id: "Website resmi perusahaan yang dibangun saat magang mahasiswa di PT Terminal Intimoda Utama menggunakan CodeIgniter 3, PHP, MySQL, dan Bootstrap. Menghadirkan 5 halaman dan modul dengan antarmuka responsif di berbagai perangkat.",
     },
     tags: [
       { label: "CodeIgniter 3", bg: "bg-[#FACC15]" },
@@ -197,8 +197,8 @@ const moreProjects: MoreProject[] = [
     cardBg: "bg-[#DCFCE7]",
     title: { en: "Safety helmet detection", id: "Deteksi helm keselamatan" },
     description: {
-      en: "A YOLOv8n prototype that reached 0.94 mAP50, built as an automated safety monitor for an industrial workplace and developed during the internship at PT INKA (Persero).",
-      id: "Prototipe YOLOv8n yang mencapai 0.94 mAP50, dibangun sebagai pemantau keselamatan kerja otomatis di lingkungan industri selama magang di PT INKA (Persero).",
+      en: "A YOLOv8n prototype that reached 0.94 mAP50, built as an automated safety monitor for an industrial workplace during the MagangHub program at PT INKA (Persero).",
+      id: "Prototipe YOLOv8n yang mencapai 0.94 mAP50, dibangun sebagai pemantau keselamatan kerja otomatis di lingkungan industri selama mengikuti program MagangHub di PT INKA (Persero).",
     },
     tools: ["YOLOv8n", "Ultralytics", "PyTorch", "OpenCV", "Python"],
   },
