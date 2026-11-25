@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import { KNOWLEDGE_BASE, retrieveContext } from "./knowledgeBase";
+import { KNOWLEDGE_BASE, retrieveContext } from "./knowledgeBase.js";
 
 export interface ChatHistoryTurn {
   role: "user" | "assistant";
